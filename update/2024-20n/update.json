@@ -98,7 +98,7 @@
         "4": {
             "src": "meanwhile/flows.json",
             "dst": "/home/pi/OpenScan/settings/.node-red/flows.json",
-            "filesize": 353412
+            "filesize": 353072
         },
         "5": {
             "src": "meanwhile/settings.js",
@@ -119,6 +119,12 @@
             "src": "meanwhile/OpenScanStatistics.py",
             "dst": "/usr/lib/python3/dist-packages/OpenScanStatistics.py",
             "filesize": 2682
+        },
+        "9": {
+            "src": "meanwhile/OpenScanMessaging.py",
+            "dst": "/usr/lib/python3/dist-packages/OpenScanMessaging.py",
+            "filesize": 2146
         }
+
     }
 }
