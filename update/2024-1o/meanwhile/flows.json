@@ -8560,7 +8560,7 @@
         "bgcolor": "transparent",
         "className": "",
         "icon": "fa-question-circle",
-        "payload": "<h1>Messaging</h1> <p><strong>Telegram Messaging</strong></p> <p>This adds the capability to send OpenScan status messages to Telegram. Please refer to the appropiate <a href=\"%5C%22https://github.com/stealthizer/OpenScan2/blob/main/docs/Telegram.md2%5C%22\" rel='\\\"noopener' target='\\\"_blank\\\"'>documentation</a> in order to configure it</p>",
+        "payload": "<h1>Messaging</h1> <p><strong>Telegram Messaging</strong></p> <p>This adds the capability to send OpenScan status messages to Telegram. Please refer to the appropiate <a href=\"https://github.com/stealthizer/OpenScan2/blob/main/docs/Telegram.md\" rel='\\\"noopener' target='\\\"_blank\\\"'>documentation</a> in order to configure it</p>",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
