@@ -13,7 +13,7 @@
         "3": {
             "src": "stable/flows.json",
             "dst": "/home/pi/OpenScan/settings/.node-red/flows.json",
-            "filesize": 351752
+            "filesize": 354258
         },
         "4": {
             "src": "stable/settings.js",
@@ -51,7 +51,7 @@
         "3": {
             "src": "beta/flows.json",
             "dst": "/home/pi/OpenScan/settings/.node-red/flows.json",
-            "filesize": 351750
+            "filesize": 354256
         },
         "4": {
             "src": "beta/settings.js",
@@ -88,7 +88,7 @@
         "3": {
             "src": "meanwhile/flows.json",
             "dst": "/home/pi/OpenScan/settings/.node-red/flows.json",
-            "filesize": 351755
+            "filesize": 354261
         },
         "4": {
             "src": "meanwhile/settings.js",
