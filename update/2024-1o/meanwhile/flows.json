@@ -8779,8 +8779,7 @@
         "y": 3840,
         "wires": [
             [
-                "d2db49796fe0da79",
-                "d0d6820224b0ab0f"
+                "d2db49796fe0da79"
             ]
         ]
     },
@@ -8794,25 +8793,10 @@
         "x": 790,
         "y": 3840,
         "wires": [
-            []
+            [
+                "aaadc78f5ea70fb8"
+            ]
         ]
-    },
-    {
-        "id": "d0d6820224b0ab0f",
-        "type": "debug",
-        "z": "e43a27722b508115",
-        "name": "debug 6",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 780,
-        "y": 3720,
-        "wires": []
     },
     {
         "id": "a74d78a1d186a833",
@@ -8920,7 +8904,8 @@
         "z": "e43a27722b508115",
         "name": "restart interface",
         "links": [
-            "fe3a855fee9e28c6"
+            "fe3a855fee9e28c6",
+            "aaadc78f5ea70fb8"
         ],
         "x": 155,
         "y": 600,
@@ -8929,6 +8914,19 @@
                 "d9d7acf381c002cf"
             ]
         ]
+    },
+    {
+        "id": "aaadc78f5ea70fb8",
+        "type": "link out",
+        "z": "e43a27722b508115",
+        "name": "link out 3",
+        "mode": "link",
+        "links": [
+            "acfcc56da7ec7880"
+        ],
+        "x": 965,
+        "y": 3840,
+        "wires": []
     },
     {
         "id": "4c7fa5b5b27b83a5",
