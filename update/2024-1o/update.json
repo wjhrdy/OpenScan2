@@ -26,9 +26,9 @@
             "filesize": 21386
         },
         "6": {
-            "src": "stable/OpenScanCommon.py",
+            "src": "stable/OpenScan.py",
             "dst": "/usr/lib/python3/dist-packages/OpenScan.py",
-            "filesize": 10396
+            "filesize": 10524
         },
         "7": {
             "src": "stable/OpenScanSettings.py",
@@ -69,9 +69,9 @@
             "filesize": 21386
         },
         "6": {
-            "src": "beta/OpenScanCommon.py",
+            "src": "beta/OpenScan.py",
             "dst": "/usr/lib/python3/dist-packages/OpenScan.py",
-            "filesize": 10396
+            "filesize": 10524
         },
         "7": {
             "src": "beta/OpenScanSettings.py",
@@ -111,9 +111,9 @@
             "filesize": 21386
         },
         "6": {
-            "src": "meanwhile/OpenScanCommon.py",
+            "src": "meanwhile/OpenScan.py",
             "dst": "/usr/lib/python3/dist-packages/OpenScan.py",
-            "filesize": 10396
+            "filesize": 10524
         },
         "7": {
             "src": "meanwhile/OpenScanSettings.py",
