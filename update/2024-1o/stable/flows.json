@@ -7767,7 +7767,8 @@
         "name": "reboot",
         "links": [
             "16c76929f88df841",
-            "09d4a9c756161e10"
+            "09d4a9c756161e10",
+            "fe3a855fee9e28c6"
         ],
         "x": 155,
         "y": 560,
@@ -8903,7 +8904,6 @@
         "z": "e43a27722b508115",
         "name": "restart interface",
         "links": [
-            "fe3a855fee9e28c6",
             "3502d0191156e12e"
         ],
         "x": 155,
@@ -9399,7 +9399,7 @@
         "name": "",
         "mode": "link",
         "links": [
-            "acfcc56da7ec7880"
+            "01c882fcc51b349c"
         ],
         "x": 995,
         "y": 560,
