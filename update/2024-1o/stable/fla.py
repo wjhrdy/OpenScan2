@@ -1,17 +1,20 @@
+from zipfile import ZipFile
 from flask import Flask, request, redirect, send_file, send_from_directory
 from flask_restx import Resource, Api, Namespace
 from picamera2 import Picamera2
 from PIL import Image, ImageDraw, ImageOps, ImageFilter, ImageEnhance, ImageChops, ImageFont
 from time import sleep, time
 from OpenScan import load_int, load_float, load_bool, ringlight, motorrun
+from OpenScanSettings import OpenScanSettings, get_openscan_settings, export_settings_to_file
 import RPi.GPIO as GPIO
 from math import sqrt
 import os
 import math
-from skimage import feature, color, transform
+#from skimage import feature, color, transform
 import numpy as np
 from scipy import ndimage
 import socket
+import zipfile
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -114,6 +117,46 @@ class Status(Resource):
                 return {"error": f"Error reading status file: {str(e)}"}, 500
         else:
             return {"status": "idle"}, 200
+
+@system_ns.route('/get_settings')
+class SendSettingsFile(Resource):
+    def get(self):
+        statistics_folder:str = '/home/pi/OpenScan/statistics/'
+        openscan_tmp_folder:str = '/home/pi/OpenScan/tmp2'
+        file_name:str = 'settings'
+        openscan_settings = get_openscan_settings()
+        export_settings_to_file(openscan_settings, openscan_tmp_folder + "/" + file_name + '.json')
+
+        zip_path = os.path.join(openscan_tmp_folder, f"{file_name}.zip")
+        json_path = os.path.join(openscan_tmp_folder, f"{file_name}.json")
+        
+        with zipfile.ZipFile(zip_path, 'w', compression=zipfile.ZIP_DEFLATED) as zip_object:
+            zip_object.write(json_path, arcname=f"{file_name}.json")
+            
+            if os.path.exists(statistics_folder):
+                for stat_file in os.listdir(statistics_folder):
+                    file_path = os.path.join(statistics_folder, stat_file)
+                    if os.path.isfile(file_path):
+                        zip_object.write(file_path, f'statistics/{stat_file}')
+        if os.path.exists(openscan_tmp_folder + "/" + file_name + ".zip"):
+            print("ZIP file created")
+        else:
+            print("ZIP file not created")
+        return send_from_directory(openscan_tmp_folder, file_name + ".zip", as_attachment=True)
+
+@system_ns.route('/get_statistics')
+class GetStatistics(Resource):
+    def get(self):
+        '''Get statistics from the OpenScanStatistics module'''
+        try:
+            from OpenScanStatistics import ScanStatistics
+            
+            stats = ScanStatistics()
+            statistics = stats.get_statistics_from_file()
+            
+            return {'statistics': statistics}, 200
+        except Exception as e:
+            return {'error': f'Error retrieving statistics: {str(e)}'}, 500
 
 @system_ns.route('/shutdown')
 class Shutdown(Resource):
@@ -479,8 +522,7 @@ class MotorRun(Resource):
     @motor_ns.doc(params={
         'motor': 'Motor name (rotor, tt, extra)',
         'angle': 'Angle to rotate (integer)',
-        'ES_enable': 'Enable endstop (optional, boolean)',
-        'ES_start_state': 'Endstop start state (optional, boolean)'
+        'endstop': 'Enable endstop (optional, boolean)'
     })
     @motor_ns.response(400, 'Bad Request')
     def get(self):
@@ -512,8 +554,5 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
-
 if __name__ == '__main__':
-#    app.run(host='127.0.0.1', port=1312, debug=False, threaded=True)
     app.run(host='0.0.0.0', port=1312, debug=False, threaded=True)
-

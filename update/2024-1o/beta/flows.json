@@ -4120,7 +4120,7 @@
         "name": "Network",
         "info": "",
         "x": 100,
-        "y": 720,
+        "y": 760,
         "wires": []
     },
     {
@@ -7530,7 +7530,7 @@
         "topic": "Restore default settings?",
         "topicType": "str",
         "x": 110,
-        "y": 620,
+        "y": 680,
         "wires": [
             [
                 "53e6681d7254d484"
@@ -7553,7 +7553,7 @@
         "topic": "",
         "name": "",
         "x": 270,
-        "y": 620,
+        "y": 680,
         "wires": [
             [
                 "c11e79cfa7bc10b7"
@@ -7572,7 +7572,7 @@
         "finalize": "",
         "libs": [],
         "x": 410,
-        "y": 620,
+        "y": 680,
         "wires": [
             [
                 "307782d10c1acdaf"
@@ -7589,7 +7589,7 @@
             "38783aea9cc317a6"
         ],
         "x": 505,
-        "y": 620,
+        "y": 680,
         "wires": []
     },
     {
@@ -7767,7 +7767,6 @@
         "name": "reboot",
         "links": [
             "16c76929f88df841",
-            "fe3a855fee9e28c6",
             "09d4a9c756161e10"
         ],
         "x": 155,
@@ -8560,7 +8559,7 @@
         "bgcolor": "transparent",
         "className": "",
         "icon": "fa-question-circle",
-        "payload": "<h1>Messaging</h1> <p><strong>Telegram Messaging</strong></p> <p>This adds the capability to send OpenScan status messages to Telegram. Please refer to the appropiate <a href=\"%5C%22https://github.com/stealthizer/OpenScan2/blob/main/docs/Telegram.md2%5C%22\" rel='\\\"noopener' target='\\\"_blank\\\"'>documentation</a> in order to configure it</p>",
+        "payload": "<h1>Messaging</h1> <p><strong>Telegram Messaging</strong></p> <p>This adds the capability to send OpenScan status messages to Telegram. Please refer to the appropiate <a href=\"https://github.com/stealthizer/OpenScan2/blob/main/docs/Telegram.md\" rel='\\\"noopener' target='\\\"_blank\\\"'>documentation</a> in order to configure it</p>",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
@@ -8746,7 +8745,7 @@
         "type": "function",
         "z": "e43a27722b508115",
         "name": "function 2",
-        "func": "let fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\nvar file = 'shield_type';\nconst current_shield = fs.readFileSync(filepath + file, 'utf8');\n\nvar current_choice = msg.payload\n\nif (current_choice != current_shield) {\n    \n    switch (current_choice) {\n        case \"green\":\n            fs.writeFile(filepath + 'pin_external', String(10), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_ringlight1', String(17), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_ringlight2', String(27), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_rotor_dir', String(5), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_rotor_step', String(6), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_rotor_enable', String(23), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_tt_dir', String(9), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_tt_step', String(11), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_rotor_endstop', String(14), err => {\n                if (err) {\n                    return\n                }\n            });\n            break;\n        case \"black\":\n            fs.writeFile(filepath + 'pin_external', String(5), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_ringlight1', String(24), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_ringlight2', String(26), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_rotor_dir', String(23), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_rotor_step', String(27), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_rotor_enable', String(22), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_tt_dir', String(6), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_tt_step', String(26), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_rotor_endstop', String(17), err => {\n                if (err) {\n                    return\n                }\n            });\n            break;\n        case \"custom\":\n            break;\n    }\n\n    fs.writeFile(filepath + file, current_choice, err => {\n        if (err) {\n            return\n        }\n    });\n}\n\nmsg.status = 'The new ' + current_choice + ' shield has been configured'\nmsg.topic = msg.status\nmsg.payload = 'Do you want to reboot now to apply the changes?'\n\nreturn msg",
+        "func": "let fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\nvar file = 'shield_type';\nconst current_shield = fs.readFileSync(filepath + file, 'utf8');\n\nvar current_choice = msg.payload\n\nif (current_choice != current_shield) {\n    \n    switch (current_choice) {\n        case \"green\":\n            fs.writeFile(filepath + 'pin_external', String(10), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_ringlight1', String(17), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_ringlight2', String(27), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_rotor_dir', String(5), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_rotor_step', String(6), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_rotor_enable', String(23), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_tt_dir', String(9), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_tt_step', String(11), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_rotor_endstop', String(14), err => {\n                if (err) {\n                    return\n                }\n            });\n            break;\n        case \"black\":\n            fs.writeFile(filepath + 'pin_external', String(5), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_ringlight1', String(24), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_ringlight2', String(26), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_rotor_dir', String(23), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_rotor_step', String(27), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_rotor_enable', String(22), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_tt_dir', String(6), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_tt_step', String(26), err => {\n                if (err) {\n                    return\n                }\n            });\n            fs.writeFile(filepath + 'pin_rotor_endstop', String(17), err => {\n                if (err) {\n                    return\n                }\n            });\n            break;\n        case \"custom\":\n            break;\n    }\n\n    fs.writeFile(filepath + file, current_choice, err => {\n        if (err) {\n            return\n        }\n    });\n}\n\nmsg.status = 'The new ' + current_choice + ' shield has been configured'\nmsg.topic = msg.status\nmsg.payload = 'Do you want to restart the interface now to apply the changes?'\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -8774,13 +8773,12 @@
         "raw": true,
         "className": "",
         "topic": "",
-        "name": "Reboot",
+        "name": "Restart",
         "x": 600,
         "y": 3840,
         "wires": [
             [
-                "d2db49796fe0da79",
-                "d0d6820224b0ab0f"
+                "d2db49796fe0da79"
             ]
         ]
     },
@@ -8794,25 +8792,10 @@
         "x": 790,
         "y": 3840,
         "wires": [
-            []
+            [
+                "3502d0191156e12e"
+            ]
         ]
-    },
-    {
-        "id": "d0d6820224b0ab0f",
-        "type": "debug",
-        "z": "e43a27722b508115",
-        "name": "debug 6",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 780,
-        "y": 3720,
-        "wires": []
     },
     {
         "id": "a74d78a1d186a833",
@@ -8902,6 +8885,49 @@
         "wires": []
     },
     {
+        "id": "d9d7acf381c002cf",
+        "type": "python3-function",
+        "z": "e43a27722b508115",
+        "name": "restart interface",
+        "func": "import os\nfrom time import sleep\nsleep(1.5)\nimport RPi.GPIO as GPIO\nGPIO.setwarnings(False)\nGPIO.cleanup()\nos.system('service flask restart')\nos.system('service nodered restart')\n",
+        "outputs": 1,
+        "x": 300,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "acfcc56da7ec7880",
+        "type": "link in",
+        "z": "e43a27722b508115",
+        "name": "restart interface",
+        "links": [
+            "fe3a855fee9e28c6",
+            "3502d0191156e12e"
+        ],
+        "x": 155,
+        "y": 600,
+        "wires": [
+            [
+                "d9d7acf381c002cf"
+            ]
+        ]
+    },
+    {
+        "id": "3502d0191156e12e",
+        "type": "link out",
+        "z": "e43a27722b508115",
+        "name": "Restart interface",
+        "mode": "link",
+        "links": [
+            "acfcc56da7ec7880"
+        ],
+        "x": 925,
+        "y": 3840,
+        "wires": []
+    },
+    {
         "id": "4c7fa5b5b27b83a5",
         "type": "python3-function",
         "z": "a5557543ccff5889",
@@ -8911,9 +8937,7 @@
         "x": 260,
         "y": 140,
         "wires": [
-            [
-                "e23c514008cad1a1"
-            ]
+            []
         ]
     },
     {
@@ -9002,23 +9026,6 @@
         "wires": []
     },
     {
-        "id": "e23c514008cad1a1",
-        "type": "debug",
-        "z": "a5557543ccff5889",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 480,
-        "y": 140,
-        "wires": []
-    },
-    {
         "id": "b0629875a30ae1d7",
         "type": "python3-function",
         "z": "a5557543ccff5889",
@@ -9032,8 +9039,7 @@
                 "1bbe2d769f42c313"
             ],
             [
-                "fefe45404bdb19c4",
-                "44573d9223b2a75d"
+                "fefe45404bdb19c4"
             ]
         ]
     },
@@ -9393,8 +9399,7 @@
         "name": "",
         "mode": "link",
         "links": [
-            "9bb0adbd716ce347",
-            "01c882fcc51b349c"
+            "acfcc56da7ec7880"
         ],
         "x": 995,
         "y": 560,
@@ -9740,12 +9745,13 @@
         "id": "c5268070.c55a3",
         "type": "ui_template",
         "z": "a5557543ccff5889",
+        "d": true,
         "group": "ddbd496e.93a288",
         "name": "Upload Btn",
         "order": 8,
         "width": "3",
         "height": 1,
-        "format": "\n<body>\n<button class=\"md-raised md-button md-ink-ripple\" onclick=\"importData()\">Upload</button>    \n\n<script>\nlet restoreScope = scope;\n\nfunction importData() {\n  let input = document.createElement('input');\n  input.type = 'file';\n  input.id = 'restoreBtn';\n  input.onchange = _ => {\n    // you can use this method to get file and perform respective operations\n        let fReader = new FileReader();\n        fReader.readAsText(input.files[0]);\n        fReader.onloadend = function(event){\n        restoreScope.send({payload:event.target.result});}\n        };\n  input.click();\n}\n</script>\n</body>\n",
+        "format": "<body>\n  <md-button class=\"md-raised\" style=\"background-color:default; color:default; width:100%; height:100%;\"\n    ng-click=\"importData()\">\n    <div class=\"center\" style=\"position: relative; top: 30%;\">Upload Config</div>\n  </md-button>\n\n  <script>\n    angular.module('myApp', ['ngMaterial'])\n.controller('UploadController', function($scope, $http) {\n    $scope.importData = function() {\n        var input = document.createElement('input');\n        input.type = 'file';\n        input.accept = '.zip';\n        input.onchange = function(event) {\n            var file = event.target.files[0];\n            if (file && file.type === 'application/zip') {\n                var formData = new FormData();\n                formData.append('file', file, file.name);\n\n                $http.post('/your-endpoint-url', formData, {\n                    transformRequest: angular.identity,\n                    headers: {'Content-Type': undefined}\n                }).then(function successCallback(response) {\n                    console.log('Success:', response.data);\n                    $scope.send({payload: 'Upload successful'});\n                }, function errorCallback(error) {\n                    console.error('Error:', error);\n                    $scope.send({payload: 'Upload failed'});\n                });\n            } else {\n                console.error('Please select a valid zip file');\n                $scope.send({payload: 'Invalid file type'});\n            }\n        };\n        input.click();\n    };\n\n    $scope.send = function(data) {\n        // Implement this method to match your restoreScope.send functionality\n        console.log('Sent:', data);\n    };\n});\n  </script>\n</body>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
@@ -9755,12 +9761,139 @@
         "y": 1060,
         "wires": [
             [
-                "5e18b80e617a3db8"
+                "f92f5fe65eaea996"
             ]
         ]
     },
     {
-        "id": "5e18b80e617a3db8",
+        "id": "f92f5fe65eaea996",
+        "type": "file",
+        "z": "a5557543ccff5889",
+        "name": "Save Settings",
+        "filename": "/home/pi/OpenScan/tmp2/upload.zip",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "binary",
+        "x": 700,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c4f91df3.caef7",
+        "type": "http in",
+        "z": "a5557543ccff5889",
+        "name": "",
+        "url": "/files",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 1280,
+        "wires": [
+            [
+                "cc5a37cf.86c6d8",
+                "c14febc0.522db8"
+            ]
+        ]
+    },
+    {
+        "id": "ef0aaf76.2236e",
+        "type": "http response",
+        "z": "a5557543ccff5889",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 590,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "cc5a37cf.86c6d8",
+        "type": "debug",
+        "z": "a5557543ccff5889",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "6a156025.b1c9f",
+        "type": "inject",
+        "z": "a5557543ccff5889",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 1380,
+        "wires": [
+            [
+                "fd62708f.a560a"
+            ]
+        ]
+    },
+    {
+        "id": "9c0b2081.b1ac6",
+        "type": "function",
+        "z": "a5557543ccff5889",
+        "name": "Format the header and payload",
+        "func": "msg.headers = {\n    \"Content-Type\": \"multipart/form-data; boundary=------------------------d74496d66958873e\"\n}\n\n\nmsg.payload = '--------------------------d74496d66958873e\\r\\n'+\n'Content-Disposition: form-data; name=\"select\"\\r\\n'+\n'\\r\\n'+\n'true\\r\\n'+\n'--------------------------d74496d66958873e\\r\\n'+\n'Content-Disposition: form-data; name=\"print\"\\r\\n'+\n'\\r\\n'+\n'true\\r\\n'+\n'--------------------------d74496d66958873e\\r\\n'+\n'Content-Disposition: form-data; name=\"file\"; filename=\"'+msg.filename+'\"\\r\\n'+\n'Content-Type: application/octet-stream\\r\\n'+\n'\\r\\n'+\nmsg.payload+'\\r\\n'+\n'--------------------------d74496d66958873e--\\r\\n';\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 1440,
+        "wires": [
+            [
+                "85c748e8.2d1f88"
+            ]
+        ]
+    },
+    {
+        "id": "85c748e8.2d1f88",
+        "type": "http request",
+        "z": "a5557543ccff5889",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://localhost:1880/files",
+        "tls": "",
+        "proxy": "",
+        "x": 610,
+        "y": 1440,
+        "wires": [
+            [
+                "a4810d7a.f652a"
+            ]
+        ]
+    },
+    {
+        "id": "a4810d7a.f652a",
         "type": "debug",
         "z": "a5557543ccff5889",
         "name": "",
@@ -9769,28 +9902,55 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 750,
-        "y": 1060,
+        "x": 790,
+        "y": 1440,
         "wires": []
     },
     {
-        "id": "44573d9223b2a75d",
-        "type": "debug",
+        "id": "c14febc0.522db8",
+        "type": "change",
         "z": "a5557543ccff5889",
-        "name": "debug 8",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 720,
-        "y": 380,
-        "wires": []
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "okay",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 1280,
+        "wires": [
+            [
+                "ef0aaf76.2236e"
+            ]
+        ]
+    },
+    {
+        "id": "fd62708f.a560a",
+        "type": "file in",
+        "z": "a5557543ccff5889",
+        "name": "",
+        "filename": "/tmp/file.txt",
+        "filenameType": "str",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "allProps": false,
+        "x": 420,
+        "y": 1380,
+        "wires": [
+            [
+                "9c0b2081.b1ac6"
+            ]
+        ]
     },
     {
         "id": "9b3e6a06c82a0f52",

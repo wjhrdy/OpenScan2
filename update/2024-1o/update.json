@@ -1,82 +1,87 @@
 {
     "stable": {
         "1": {
-            "src": "stable/OpenScan.py",
-            "dst": "/usr/lib/python3/dist-packages/OpenScan.py",
-            "filesize": 10524
-        },
-        "2": {
-            "src": "stable/OpenScanStatistics.py",
-            "dst": "/usr/lib/python3/dist-packages/OpenScanStatistics.py",
-            "filesize": 1288
-        },
-        "3": {
             "src": "stable/config.txt",
             "dst": "/boot/config.txt",
-            "filesize": 864
+            "filesize": 867
         },
-        "4": {
+        "2": {
             "src": "stable/expand_root.sh",
             "dst": "/home/pi/OpenScan/files/expand_root.sh",
             "filesize": 170
         },
-        "5": {
+        "3": {
             "src": "stable/fla.py",
             "dst": "/home/pi/OpenScan/files/fla.py",
-            "filesize": 17869
+            "filesize": 19750
         },
-        "6": {
+        "4": {
             "src": "stable/flows.json",
             "dst": "/home/pi/OpenScan/settings/.node-red/flows.json",
-            "filesize": 355845
+            "filesize": 351752
         },
-        "7": {
+        "5": {
             "src": "stable/settings.js",
             "dst": "/root/.node-red/settings.js",
-            "filesize": 21248
+            "filesize": 21386
+        },
+        "6": {
+            "src": "stable/OpenScanCommon.py",
+            "dst": "/usr/lib/python3/dist-packages/OpenScan.py",
+            "filesize": 10396
+        },
+        "7": {
+            "src": "stable/OpenScanSettings.py",
+            "dst": "/usr/lib/python3/dist-packages/OpenScanSettings.py",
+            "filesize": 5520
+        },
+        "8": {
+            "src": "stable/OpenScanStatistics.py",
+            "dst": "/usr/lib/python3/dist-packages/OpenScanStatistics.py",
+            "filesize": 2682
         }
     },
 
     "beta": {
         "1": {
-            "src": "beta/OpenScan.py",
-            "dst": "/usr/lib/python3/dist-packages/OpenScan.py",
-            "filesize": 10396
-        },
-        "2": {
-            "src": "beta/OpenScanSettings.py",
-            "dst": "/usr/lib/python3/dist-packages/OpenScanSettings.py",
-            "filesize": 5293
-        },
-        "3": {
-            "src": "beta/OpenScanStatistics.py",
-            "dst": "/usr/lib/python3/dist-packages/OpenScanStatistics.py",
-            "filesize": 1288
-        },
-        "4": {
             "src": "beta/config.txt",
             "dst": "/boot/config.txt",
-            "filesize": 866
+            "filesize": 867
         },
-        "5": {
+        "2": {
             "src": "beta/expand_root.sh",
             "dst": "/home/pi/OpenScan/files/expand_root.sh",
             "filesize": 170
         },
-        "6": {
+        "3": {
             "src": "beta/fla.py",
             "dst": "/home/pi/OpenScan/files/fla.py",
-            "filesize": 19865
+            "filesize": 19750
         },
-        "7": {
+        "4": {
             "src": "beta/flows.json",
             "dst": "/home/pi/OpenScan/settings/.node-red/flows.json",
-            "filesize": 353180
+            "filesize": 351750
         },
-        "8": {
+        "5": {
             "src": "beta/settings.js",
             "dst": "/root/.node-red/settings.js",
-            "filesize": 21332
+            "filesize": 21386
+        },
+        "6": {
+            "src": "beta/OpenScanCommon.py",
+            "dst": "/usr/lib/python3/dist-packages/OpenScan.py",
+            "filesize": 10396
+        },
+        "7": {
+            "src": "beta/OpenScanSettings.py",
+            "dst": "/usr/lib/python3/dist-packages/OpenScanSettings.py",
+            "filesize": 5520
+        },
+        "8": {
+            "src": "beta/OpenScanStatistics.py",
+            "dst": "/usr/lib/python3/dist-packages/OpenScanStatistics.py",
+            "filesize": 2682
         }
     },
     "meanwhile": {
