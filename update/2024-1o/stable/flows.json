@@ -1193,7 +1193,7 @@
         "type": "python3-function",
         "z": "e6f4d02efb300ea9",
         "name": "motor run",
-        "func": "from OpenScan import motorrun, load_int\nfrom time import sleep\n\nmotorrun('rotor',300,True,False)\n\n",
+        "func": "from OpenScan import motorrun, load_int\nfrom time import sleep\n\nmotorrun('rotor',300,True)\n\n",
         "outputs": 1,
         "x": 860,
         "y": 580,
