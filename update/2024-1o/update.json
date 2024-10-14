@@ -23,7 +23,7 @@
         "5": {
             "src": "stable/OpenScan.py",
             "dst": "/usr/lib/python3/dist-packages/OpenScan.py",
-            "filesize": 10524
+            "filesize": 10529
         },
         "6": {
             "src": "stable/OpenScanSettings.py",
