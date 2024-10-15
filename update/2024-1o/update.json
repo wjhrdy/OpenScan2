@@ -13,7 +13,7 @@
         "3": {
             "src": "stable/flows.json",
             "dst": "/home/pi/OpenScan/settings/.node-red/flows.json",
-            "filesize": 354536
+            "filesize": 354472
         },
         "4": {
             "src": "stable/settings.js",
