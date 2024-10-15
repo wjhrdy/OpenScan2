@@ -8,7 +8,7 @@
         "2": {
             "src": "stable/fla.py",
             "dst": "/home/pi/OpenScan/files/fla.py",
-            "filesize": 19679
+            "filesize": 19678
         },
         "3": {
             "src": "stable/flows.json",

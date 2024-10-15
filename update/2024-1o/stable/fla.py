@@ -10,7 +10,7 @@ import RPi.GPIO as GPIO
 from math import sqrt
 import os
 import math
-#from skimage import feature, color, transform
+from skimage import feature, color, transform
 import numpy as np
 from scipy import ndimage
 import socket
