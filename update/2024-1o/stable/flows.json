@@ -1238,7 +1238,7 @@
         "order": 4,
         "width": 0,
         "height": 0,
-        "format": "<h2>What's new?</h2>\n<ul>\n    <li>speed improvement 2-3x</li>\n    <li>currently tested on OpenScan Mini + IMX519 with RPi 4</li>\n    <li>optimized toolpath</li>\n    <li>more responsive user interface</li>\n    <li>hotspot mode (when no wireless network available ssid: <em>openscan</em> pw: <em>opensource</em></li>\n    <li>preview features and sharpness</li>\n    <li>partial background masking</li>\n    <li>no more autofocus --&gt; instead you can set a min and max focus distance</li>\n</ul>\nnote, that this is still an early beta and there might be some unintended bugs. please reach out to info@openscan.eu if you run into any issues.",
+        "format": "<h2>What's new in 2024-1o?</h2>\n<ul>\n    <li>Better endstop configuration</li>\n    <li>Configure your shield in just 1 click!</li>\n    <li>Opt to automatically delete incomplete sessions</li>\n    <li>Opt to change the order of the motor movement</li>\n    <li>Export your configuration</li>\n    <li>Gather statistics! (testing)</li>\n</ul>\nCheck <a href=\"https://github.com/stealthizer/OpenScan2/blob/main/docs/changelog.md\" target=\"_blank\">Changelog</a> for more details. Happy scanning!",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
