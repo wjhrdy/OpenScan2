@@ -1,0 +1,23 @@
+#!/bin/bash
+settings_folder="/home/pi/OpenScan/settings"
+
+openscan_version=`cat $settings_folder/openscan_version`
+openscan_branch=`cat $settings_folder/openscan_branch`
+
+echo "Meanwhile - $openscan_version - $openscan_branch" > /home/pi/OpenScan/tmp2/version.txt
+
+# Generate an unique UUID that identifies that OpenScan
+if [ ! -f $settings_folder/openscan_uuid ]; then
+        echo $(cat /proc/sys/kernel/random/uuid) > $settings_folder/openscan_uuid
+fi
+
+# Gather some data to automate decisions in flows or statistics
+echo `cat /proc/cpuinfo|grep Model|cut -d: -f2|awk '{$1=$1};1'` > $settings_folder/raspberry_model
+echo `arch` >  $settings_folder/architecture
+echo `cat /sys/block/mmcblk0/device/oemid` > $settings_folder/sdcard_manfid
+echo `cat /sys/block/mmcblk0/device/name` > $settings_folder/sdcard_name
+echo `cat /etc/os-release |grep VERSION_CODENAME|cut -d= -f2` > $settings_folder/raspbian_codename
+
+if [[ $(cat $settings_folder/camera) != "imx519" || $(cat $settings_folder/camera) != "arducam64" ]]; then
+  echo `libcamera-still  --list-cameras|head -3|tail -1|cut -d: -f2|cut -d[ -f1|awk '{$1=$1};1'` > $settings_folder/camera
+fi

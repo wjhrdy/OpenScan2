@@ -13,7 +13,7 @@
         "3": {
             "src": "stable/flows.json",
             "dst": "/home/pi/OpenScan/settings/.node-red/flows.json",
-            "filesize": 354324
+            "filesize": 354190
         },
         "4": {
             "src": "stable/settings.js",
@@ -34,6 +34,11 @@
             "src": "stable/OpenScanStatistics.py",
             "dst": "/usr/lib/python3/dist-packages/OpenScanStatistics.py",
             "filesize": 2682
+        },
+        "8": {
+            "src": "stable/startup",
+            "dst": "/root/scripts/startup",
+            "filesize": 1146
         }
     },
 
