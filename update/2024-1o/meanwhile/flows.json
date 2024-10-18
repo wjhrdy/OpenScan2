@@ -7760,32 +7760,6 @@
         ]
     },
     {
-        "id": "e51dd5e5c0f050d6",
-        "type": "ui_text_input",
-        "z": "e43a27722b508115",
-        "name": "",
-        "label": "SSID",
-        "tooltip": "",
-        "group": "8ab79a98e536e0d6",
-        "order": 4,
-        "width": 6,
-        "height": 1,
-        "passthru": false,
-        "mode": "text",
-        "delay": "0",
-        "topic": "ssid",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "str",
-        "x": 210,
-        "y": 980,
-        "wires": [
-            [
-                "a7d233f984009e2e"
-            ]
-        ]
-    },
-    {
         "id": "9959649037cb063b",
         "type": "ui_text_input",
         "z": "e43a27722b508115",
@@ -7805,32 +7779,6 @@
         "topicType": "str",
         "x": 220,
         "y": 1020,
-        "wires": [
-            [
-                "a7d233f984009e2e"
-            ]
-        ]
-    },
-    {
-        "id": "1d42cb9a63409283",
-        "type": "ui_text_input",
-        "z": "e43a27722b508115",
-        "name": "",
-        "label": "Country Code 2",
-        "tooltip": "",
-        "group": "8ab79a98e536e0d6",
-        "order": 6,
-        "width": 6,
-        "height": 1,
-        "passthru": false,
-        "mode": "text",
-        "delay": "0",
-        "topic": "country",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "str",
-        "x": 240,
-        "y": 1060,
         "wires": [
             [
                 "a7d233f984009e2e"
@@ -7886,19 +7834,18 @@
         "id": "a7d233f984009e2e",
         "type": "function",
         "z": "e43a27722b508115",
-        "name": "function 1",
+        "name": "Process Wifi Setup",
         "func": "if (msg.topic == \"ssid\"){\n    global.set('network_ssid',msg.payload)\n}\nelse if (msg.topic == \"password\"){\n    global.set('network_password',msg.payload)\n}\nelse if (msg.topic == \"country\"){\n    global.set('network_country',msg.payload)\n}\nelse if (msg.topic == \"connect\"){\n    msg.ssid = global.get('network_ssid')\n    msg.password = global.get('network_password')\n    msg.country = global.get('network_country')\n    msg.payload = \"\"\n    return msg\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
-        "y": 980,
+        "x": 470,
+        "y": 1000,
         "wires": [
             [
                 "9b851aa999e86fd7",
-                "021dc780b478fee6",
                 "9ec0ad9fd3687e9f"
             ]
         ]
@@ -7915,9 +7862,9 @@
         "y": 980,
         "wires": [
             [
-                "e51dd5e5c0f050d6",
                 "9959649037cb063b",
-                "1d42cb9a63409283"
+                "042321dd888d3bad",
+                "083a8df274b9b1e2"
             ]
         ]
     },
@@ -7928,13 +7875,12 @@
         "name": "",
         "func": "from OpenScan import add_wifi_network, check_hotspot_mode\nfrom time import sleep\n\nsleep(0.5)\n\nerror = \"\"\nif msg['ssid'] == \"\":\n    error = \"SSID, \"\nif msg['password'] == \"\" or len(msg['password'])<8:\n    error = error + \"password, \"\nif msg['country'] == \"\" or len(msg['country']) != 2:\n    error = error + \"country code\"\n\nif error != \"\":\n    msg['payload'] = error\n    msg['topic'] = \"Invalid Input(s):\"\n    if check_hotspot_mode():\n        msg['mode'] = True\n    else:\n        msg['mode'] = False\n    return msg\n\n\nmsg['result'] = add_wifi_network(msg['ssid'],msg['password'],msg['country'])\n\nsleep(3)\n\nif check_hotspot_mode():\n    msg['mode'] = True\nelse:\n    msg['mode'] = False\n\nmsg['topic'] = \"Added wifi & connected\"\nmsg['payload'] = \"changes might take a moment ;)\"\n\nreturn msg",
         "outputs": 1,
-        "x": 670,
-        "y": 980,
+        "x": 810,
+        "y": 1000,
         "wires": [
             [
                 "c994c779e4bad800",
-                "11b19e9c6a4ffd8d",
-                "36890eb99a2ca1cf"
+                "11b19e9c6a4ffd8d"
             ]
         ]
     },
@@ -7953,28 +7899,11 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 870,
-        "y": 980,
+        "x": 1010,
+        "y": 1000,
         "wires": [
             []
         ]
-    },
-    {
-        "id": "021dc780b478fee6",
-        "type": "debug",
-        "z": "e43a27722b508115",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 640,
-        "y": 920,
-        "wires": []
     },
     {
         "id": "c994c779e4bad800",
@@ -7985,23 +7914,22 @@
         "links": [
             "592ec13d8f8923a9"
         ],
-        "x": 815,
-        "y": 1020,
+        "x": 955,
+        "y": 1040,
         "wires": []
     },
     {
         "id": "1eef47e0074545a9",
         "type": "python3-function",
         "z": "e43a27722b508115",
-        "name": "",
+        "name": "Check Hotspot Mode",
         "func": "from OpenScan import add_wifi_network, check_hotspot_mode\n\nif check_hotspot_mode():\n    msg['mode'] = True\nelse:\n    msg['mode'] = False\n\nreturn msg",
         "outputs": 2,
-        "x": 670,
-        "y": 1100,
+        "x": 820,
+        "y": 1080,
         "wires": [
             [
-                "c994c779e4bad800",
-                "36890eb99a2ca1cf"
+                "c994c779e4bad800"
             ],
             []
         ]
@@ -8027,8 +7955,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 440,
-        "y": 1140,
+        "x": 620,
+        "y": 1080,
         "wires": [
             [
                 "1eef47e0074545a9"
@@ -8050,25 +7978,8 @@
         "className": "",
         "topic": "Adding new Wifi",
         "name": "",
-        "x": 670,
-        "y": 1020,
-        "wires": []
-    },
-    {
-        "id": "36890eb99a2ca1cf",
-        "type": "debug",
-        "z": "e43a27722b508115",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 860,
-        "y": 940,
+        "x": 810,
+        "y": 1040,
         "wires": []
     },
     {
@@ -8996,6 +8907,550 @@
         "x": 820,
         "y": 2060,
         "wires": []
+    },
+    {
+        "id": "042321dd888d3bad",
+        "type": "ui_dropdown",
+        "z": "e43a27722b508115",
+        "name": "",
+        "label": "Country Code",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "8ab79a98e536e0d6",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "AE",
+                "value": "AE",
+                "type": "str"
+            },
+            {
+                "label": "AR",
+                "value": "AR",
+                "type": "str"
+            },
+            {
+                "label": "AT",
+                "value": "AT",
+                "type": "str"
+            },
+            {
+                "label": "AU",
+                "value": "AU",
+                "type": "str"
+            },
+            {
+                "label": "BG",
+                "value": "BG",
+                "type": "str"
+            },
+            {
+                "label": "BH",
+                "value": "BH",
+                "type": "str"
+            },
+            {
+                "label": "BM",
+                "value": "BM",
+                "type": "str"
+            },
+            {
+                "label": "BO",
+                "value": "BO",
+                "type": "str"
+            },
+            {
+                "label": "BR",
+                "value": "BR",
+                "type": "str"
+            },
+            {
+                "label": "CA",
+                "value": "CA",
+                "type": "str"
+            },
+            {
+                "label": "CH",
+                "value": "CH",
+                "type": "str"
+            },
+            {
+                "label": "CL",
+                "value": "CL",
+                "type": "str"
+            },
+            {
+                "label": "CN",
+                "value": "CN",
+                "type": "str"
+            },
+            {
+                "label": "CO",
+                "value": "CO",
+                "type": "str"
+            },
+            {
+                "label": "CR",
+                "value": "CR",
+                "type": "str"
+            },
+            {
+                "label": "CS",
+                "value": "CS",
+                "type": "str"
+            },
+            {
+                "label": "CY",
+                "value": "CY",
+                "type": "str"
+            },
+            {
+                "label": "CZ",
+                "value": "CZ",
+                "type": "str"
+            },
+            {
+                "label": "DE",
+                "value": "DE",
+                "type": "str"
+            },
+            {
+                "label": "DK",
+                "value": "DK",
+                "type": "str"
+            },
+            {
+                "label": "DO",
+                "value": "DO",
+                "type": "str"
+            },
+            {
+                "label": "DZ",
+                "value": "DZ",
+                "type": "str"
+            },
+            {
+                "label": "EC",
+                "value": "EC",
+                "type": "str"
+            },
+            {
+                "label": "EE",
+                "value": "EE",
+                "type": "str"
+            },
+            {
+                "label": "EG",
+                "value": "EG",
+                "type": "str"
+            },
+            {
+                "label": "ES",
+                "value": "ES",
+                "type": "str"
+            },
+            {
+                "label": "FI",
+                "value": "FI",
+                "type": "str"
+            },
+            {
+                "label": "FR",
+                "value": "FR",
+                "type": "str"
+            },
+            {
+                "label": "GB",
+                "value": "GB",
+                "type": "str"
+            },
+            {
+                "label": "GR",
+                "value": "GR",
+                "type": "str"
+            },
+            {
+                "label": "GT",
+                "value": "GT",
+                "type": "str"
+            },
+            {
+                "label": "HK",
+                "value": "HK",
+                "type": "str"
+            },
+            {
+                "label": "HN",
+                "value": "HN",
+                "type": "str"
+            },
+            {
+                "label": "ID",
+                "value": "ID",
+                "type": "str"
+            },
+            {
+                "label": "IE",
+                "value": "IE",
+                "type": "str"
+            },
+            {
+                "label": "IL",
+                "value": "IL",
+                "type": "str"
+            },
+            {
+                "label": "IN",
+                "value": "IN",
+                "type": "str"
+            },
+            {
+                "label": "IS",
+                "value": "IS",
+                "type": "str"
+            },
+            {
+                "label": "IT",
+                "value": "IT",
+                "type": "str"
+            },
+            {
+                "label": "JM",
+                "value": "JM",
+                "type": "str"
+            },
+            {
+                "label": "JO",
+                "value": "JO",
+                "type": "str"
+            },
+            {
+                "label": "JP3",
+                "value": "JP3",
+                "type": "str"
+            },
+            {
+                "label": "KE",
+                "value": "KE",
+                "type": "str"
+            },
+            {
+                "label": "KR",
+                "value": "KR",
+                "type": "str"
+            },
+            {
+                "label": "KW",
+                "value": "KW",
+                "type": "str"
+            },
+            {
+                "label": "LB",
+                "value": "LB",
+                "type": "str"
+            },
+            {
+                "label": "LI",
+                "value": "LI",
+                "type": "str"
+            },
+            {
+                "label": "LK",
+                "value": "LK",
+                "type": "str"
+            },
+            {
+                "label": "LT",
+                "value": "LT",
+                "type": "str"
+            },
+            {
+                "label": "LU",
+                "value": "LU",
+                "type": "str"
+            },
+            {
+                "label": "MA",
+                "value": "MA",
+                "type": "str"
+            },
+            {
+                "label": "MU",
+                "value": "MU",
+                "type": "str"
+            },
+            {
+                "label": "MX",
+                "value": "MX",
+                "type": "str"
+            },
+            {
+                "label": "NL",
+                "value": "NL",
+                "type": "str"
+            },
+            {
+                "label": "NO",
+                "value": "NO",
+                "type": "str"
+            },
+            {
+                "label": "NZ",
+                "value": "NZ",
+                "type": "str"
+            },
+            {
+                "label": "OM",
+                "value": "OM",
+                "type": "str"
+            },
+            {
+                "label": "PA",
+                "value": "PA",
+                "type": "str"
+            },
+            {
+                "label": "PE",
+                "value": "PE",
+                "type": "str"
+            },
+            {
+                "label": "PH",
+                "value": "PH",
+                "type": "str"
+            },
+            {
+                "label": "PK",
+                "value": "PK",
+                "type": "str"
+            },
+            {
+                "label": "PL",
+                "value": "PL",
+                "type": "str"
+            },
+            {
+                "label": "PR",
+                "value": "PR",
+                "type": "str"
+            },
+            {
+                "label": "PT",
+                "value": "PT",
+                "type": "str"
+            },
+            {
+                "label": "QA",
+                "value": "QA",
+                "type": "str"
+            },
+            {
+                "label": "RO",
+                "value": "RO",
+                "type": "str"
+            },
+            {
+                "label": "RU",
+                "value": "RU",
+                "type": "str"
+            },
+            {
+                "label": "SA",
+                "value": "SA",
+                "type": "str"
+            },
+            {
+                "label": "SG",
+                "value": "SG",
+                "type": "str"
+            },
+            {
+                "label": "SI",
+                "value": "SI",
+                "type": "str"
+            },
+            {
+                "label": "SK",
+                "value": "SK",
+                "type": "str"
+            },
+            {
+                "label": "SV",
+                "value": "SV",
+                "type": "str"
+            },
+            {
+                "label": "TH",
+                "value": "TH",
+                "type": "str"
+            },
+            {
+                "label": "TN",
+                "value": "TN",
+                "type": "str"
+            },
+            {
+                "label": "TR",
+                "value": "TR",
+                "type": "str"
+            },
+            {
+                "label": "TT",
+                "value": "TT",
+                "type": "str"
+            },
+            {
+                "label": "TW",
+                "value": "TW",
+                "type": "str"
+            },
+            {
+                "label": "UA",
+                "value": "UA",
+                "type": "str"
+            },
+            {
+                "label": "US",
+                "value": "US",
+                "type": "str"
+            },
+            {
+                "label": "UY",
+                "value": "UY",
+                "type": "str"
+            },
+            {
+                "label": "VE",
+                "value": "VE",
+                "type": "str"
+            },
+            {
+                "label": "VN",
+                "value": "VN",
+                "type": "str"
+            },
+            {
+                "label": "ZA",
+                "value": "ZA",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "country",
+        "topicType": "str",
+        "className": "",
+        "x": 240,
+        "y": 1060,
+        "wires": [
+            [
+                "a7d233f984009e2e"
+            ]
+        ]
+    },
+    {
+        "id": "922a6cf91fd02029",
+        "type": "change",
+        "z": "e43a27722b508115",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "options",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 1160,
+        "wires": [
+            [
+                "92d406ee3fff3fbf"
+            ]
+        ]
+    },
+    {
+        "id": "64a2e91c8a800306",
+        "type": "function",
+        "z": "e43a27722b508115",
+        "name": "SSID format Converter",
+        "func": "let uniqueMetricsArray = msg.payload.split(/\\r?\\n/);\nmsg.payload = uniqueMetricsArray\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1160,
+        "wires": [
+            [
+                "922a6cf91fd02029"
+            ]
+        ]
+    },
+    {
+        "id": "083a8df274b9b1e2",
+        "type": "exec",
+        "z": "e43a27722b508115",
+        "command": "iwlist wlan0 scan| grep ESSID | cut -d\\\" -f2|grep .|sort -u",
+        "addpay": "options",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "SSID List",
+        "x": 220,
+        "y": 1160,
+        "wires": [
+            [
+                "64a2e91c8a800306"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "92d406ee3fff3fbf",
+        "type": "ui_dropdown",
+        "z": "e43a27722b508115",
+        "name": "",
+        "label": "SSID List",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "8ab79a98e536e0d6",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "options",
+        "topicType": "msg",
+        "className": "",
+        "x": 220,
+        "y": 980,
+        "wires": [
+            [
+                "a7d233f984009e2e"
+            ]
+        ]
     },
     {
         "id": "4c7fa5b5b27b83a5",
