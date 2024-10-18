@@ -157,7 +157,7 @@ def motorrun(motor,angle,endstop=False):
     if endstop:
         endstop_pin = load_int('pin_' + motor + '_endstop')
         endstop_pushed = load_bool(motor + '_endstop_pushed')
-        GPIO.setup(ES_pin, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+        GPIO.setup(endstop_pin, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 
     if (step_count>0):
         GPIO.output(dirpin, GPIO.HIGH)
