@@ -43,40 +43,45 @@
     },
 
     "beta": {
-        "1": {
-            "src": "beta/config.txt",
+"1": {
+            "src": "stable/config.txt",
             "dst": "/boot/config.txt",
             "filesize": 867
         },
         "2": {
-            "src": "beta/fla.py",
+            "src": "stable/fla.py",
             "dst": "/home/pi/OpenScan/files/fla.py",
-            "filesize": 19679
+            "filesize": 19678
         },
         "3": {
-            "src": "beta/flows.json",
+            "src": "stable/flows.json",
             "dst": "/home/pi/OpenScan/settings/.node-red/flows.json",
-            "filesize": 354256
+            "filesize": 354279
         },
         "4": {
-            "src": "beta/settings.js",
+            "src": "stable/settings.js",
             "dst": "/root/.node-red/settings.js",
             "filesize": 21386
         },
         "5": {
-            "src": "beta/OpenScan.py",
+            "src": "stable/OpenScan.py",
             "dst": "/usr/lib/python3/dist-packages/OpenScan.py",
-            "filesize": 10524
+            "filesize": 10529
         },
         "6": {
-            "src": "beta/OpenScanSettings.py",
+            "src": "stable/OpenScanSettings.py",
             "dst": "/usr/lib/python3/dist-packages/OpenScanSettings.py",
             "filesize": 5520
         },
         "7": {
-            "src": "beta/OpenScanStatistics.py",
+            "src": "stable/OpenScanStatistics.py",
             "dst": "/usr/lib/python3/dist-packages/OpenScanStatistics.py",
             "filesize": 2682
+        },
+        "8": {
+            "src": "stable/startup",
+            "dst": "/root/scripts/startup",
+            "filesize": 1146
         }
     },
     "meanwhile": {
@@ -88,12 +93,12 @@
         "2": {
             "src": "meanwhile/fla.py",
             "dst": "/home/pi/OpenScan/files/fla.py",
-            "filesize": 19679
+            "filesize": 19678
         },
         "3": {
             "src": "meanwhile/flows.json",
             "dst": "/home/pi/OpenScan/settings/.node-red/flows.json",
-            "filesize": 354261
+            "filesize": 354279
         },
         "4": {
             "src": "meanwhile/settings.js",
@@ -103,7 +108,7 @@
         "5": {
             "src": "meanwhile/OpenScan.py",
             "dst": "/usr/lib/python3/dist-packages/OpenScan.py",
-            "filesize": 10524
+            "filesize": 10529
         },
         "6": {
             "src": "meanwhile/OpenScanSettings.py",
@@ -114,6 +119,11 @@
             "src": "meanwhile/OpenScanStatistics.py",
             "dst": "/usr/lib/python3/dist-packages/OpenScanStatistics.py",
             "filesize": 2682
+        },
+        "8": {
+            "src": "meanwhile/startup",
+            "dst": "/root/scripts/startup",
+            "filesize": 1146
         }
     }
 }
