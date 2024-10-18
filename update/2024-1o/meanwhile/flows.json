@@ -7846,7 +7846,8 @@
         "wires": [
             [
                 "9b851aa999e86fd7",
-                "9ec0ad9fd3687e9f"
+                "9ec0ad9fd3687e9f",
+                "77fa30af0271fb09"
             ]
         ]
     },
@@ -9408,8 +9409,8 @@
         "timer": "",
         "winHide": false,
         "oldrc": false,
-        "name": "SSID List",
-        "x": 220,
+        "name": "SSID",
+        "x": 210,
         "y": 1160,
         "wires": [
             [
@@ -9424,7 +9425,7 @@
         "type": "ui_dropdown",
         "z": "e43a27722b508115",
         "name": "",
-        "label": "SSID List",
+        "label": "SSID",
         "tooltip": "",
         "place": "Select option",
         "group": "8ab79a98e536e0d6",
@@ -9441,16 +9442,33 @@
             }
         ],
         "payload": "",
-        "topic": "options",
-        "topicType": "msg",
+        "topic": "ssid",
+        "topicType": "str",
         "className": "",
-        "x": 220,
+        "x": 210,
         "y": 980,
         "wires": [
             [
                 "a7d233f984009e2e"
             ]
         ]
+    },
+    {
+        "id": "77fa30af0271fb09",
+        "type": "debug",
+        "z": "e43a27722b508115",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 920,
+        "wires": []
     },
     {
         "id": "4c7fa5b5b27b83a5",
