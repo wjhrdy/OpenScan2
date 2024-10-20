@@ -98,7 +98,7 @@
         "3": {
             "src": "meanwhile/flows.json",
             "dst": "/home/pi/OpenScan/settings/.node-red/flows.json",
-            "filesize": 369756
+            "filesize": 372338
         },
         "4": {
             "src": "meanwhile/settings.js",
@@ -123,7 +123,7 @@
         "8": {
             "src": "meanwhile/startup",
             "dst": "/root/scripts/startup",
-            "filesize": 1146
+            "filesize": 1521
         }
     }
 }

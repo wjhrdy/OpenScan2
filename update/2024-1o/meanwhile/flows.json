@@ -1326,7 +1326,7 @@
         "type": "function",
         "z": "481edaf6db5a7a54",
         "name": "write",
-        "func": "const delay = 100; // 100 ms delay\n\nif (!context.timeout) {\n  context.timeout = setTimeout(() => {\n    node.send({ payload: msg.payload });\n    clearTimeout(context.timeout);\n    delete context.timeout;\n  }, delay);\n} else {\n  context.set(\"lastMessage\", msg.payload);\n  clearTimeout(context.timeout);\n  context.timeout = setTimeout(() => {\n    node.send({ payload: context.get(\"lastMessage\") });\n    clearTimeout(context.timeout);\n    delete context.timeout;\n  }, delay);\n}\n\nvar file = 'routine_photocount'\nlet fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\n\nconst content = String(msg.payload)\nfs.writeFile(filepath + file, content, err => {\n  if (err) {\n    return\n  }\n  });",
+        "func": "const delay = 100; // 100 ms delay\n\nif (!context.timeout) {\n  context.timeout = setTimeout(() => {\n    node.send({ payload: msg.payload });\n    clearTimeout(context.timeout);\n    delete context.timeout;\n  }, delay);\n} else {\n  context.set(\"lastMessage\", msg.payload);\n  clearTimeout(context.timeout);\n  context.timeout = setTimeout(() => {\n    node.send({ payload: context.get(\"lastMessage\") });\n    clearTimeout(context.timeout);\n    delete context.timeout;\n  }, delay);\n}\n\nvar file = 'routine_photocount'\nlet fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\n\nconst content = String(msg.payload)\nfs.writeFile(filepath + file, content, err => {\n  if (err) {\n    return\n  }\n}\n);\nglobal.set('last_activity_timestamp', true)",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1400,7 +1400,7 @@
         "type": "function",
         "z": "481edaf6db5a7a54",
         "name": "write",
-        "func": "const delay = 100; // 100 ms delay\n\nif (!context.timeout) {\n  context.timeout = setTimeout(() => {\n    node.send({ payload: msg.payload });\n    clearTimeout(context.timeout);\n    delete context.timeout;\n  }, delay);\n} else {\n  context.set(\"lastMessage\", msg.payload);\n  clearTimeout(context.timeout);\n  context.timeout = setTimeout(() => {\n    node.send({ payload: context.get(\"lastMessage\") });\n    clearTimeout(context.timeout);\n    delete context.timeout;\n  }, delay);\n}\nvar file = 'cam_cropx'\nlet fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\n\nconst content = String(msg.payload)\nfs.writeFile(filepath + file, content, err => {\n  if (err) {\n    return\n  }\n  });",
+        "func": "const delay = 100; // 100 ms delay\n\nif (!context.timeout) {\n  context.timeout = setTimeout(() => {\n    node.send({ payload: msg.payload });\n    clearTimeout(context.timeout);\n    delete context.timeout;\n  }, delay);\n} else {\n  context.set(\"lastMessage\", msg.payload);\n  clearTimeout(context.timeout);\n  context.timeout = setTimeout(() => {\n    node.send({ payload: context.get(\"lastMessage\") });\n    clearTimeout(context.timeout);\n    delete context.timeout;\n  }, delay);\n}\nvar file = 'cam_cropx'\nlet fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\n\nconst content = String(msg.payload)\nfs.writeFile(filepath + file, content, err => {\n  if (err) {\n    return\n  }\n  });\nglobal.set('last_activity_timestamp', true)",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1417,7 +1417,7 @@
         "type": "function",
         "z": "481edaf6db5a7a54",
         "name": "write",
-        "func": "const delay = 100; // 100 ms delay\n\nif (!context.timeout) {\n  context.timeout = setTimeout(() => {\n    node.send({ payload: msg.payload });\n    clearTimeout(context.timeout);\n    delete context.timeout;\n  }, delay);\n} else {\n  context.set(\"lastMessage\", msg.payload);\n  clearTimeout(context.timeout);\n  context.timeout = setTimeout(() => {\n    node.send({ payload: context.get(\"lastMessage\") });\n    clearTimeout(context.timeout);\n    delete context.timeout;\n  }, delay);\n}\nvar file = 'cam_cropy'\nlet fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\n\nconst content = String(msg.payload)\nfs.writeFile(filepath + file, content, err => {\n  if (err) {\n    return\n  }\n  });\n",
+        "func": "const delay = 100; // 100 ms delay\n\nif (!context.timeout) {\n  context.timeout = setTimeout(() => {\n    node.send({ payload: msg.payload });\n    clearTimeout(context.timeout);\n    delete context.timeout;\n  }, delay);\n} else {\n  context.set(\"lastMessage\", msg.payload);\n  clearTimeout(context.timeout);\n  context.timeout = setTimeout(() => {\n    node.send({ payload: context.get(\"lastMessage\") });\n    clearTimeout(context.timeout);\n    delete context.timeout;\n  }, delay);\n}\nvar file = 'cam_cropy'\nlet fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\n\nconst content = String(msg.payload)\nfs.writeFile(filepath + file, content, err => {\n  if (err) {\n    return\n  }\n  });\nglobal.set('last_activity_timestamp', true)",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1479,7 +1479,7 @@
         "type": "function",
         "z": "481edaf6db5a7a54",
         "name": "write",
-        "func": "const delay = 100; // 100 ms delay\n\nif (!context.timeout) {\n  context.timeout = setTimeout(() => {\n    node.send({ payload: msg.payload });\n    clearTimeout(context.timeout);\n    delete context.timeout;\n  }, delay);\n} else {\n  context.set(\"lastMessage\", msg.payload);\n  clearTimeout(context.timeout);\n  context.timeout = setTimeout(() => {\n    node.send({ payload: context.get(\"lastMessage\") });\n    clearTimeout(context.timeout);\n    delete context.timeout;\n  }, delay);\n}\n\nvar file = 'routine_projectname'\nlet fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\n\nconst content = String(msg.payload).replace(/ /g, '_')\nfs.writeFile(filepath + file, content, err => {\n  if (err) {\n    return\n  }\n  });\n",
+        "func": "const delay = 100; // 100 ms delay\n\nif (!context.timeout) {\n  context.timeout = setTimeout(() => {\n    node.send({ payload: msg.payload });\n    clearTimeout(context.timeout);\n    delete context.timeout;\n  }, delay);\n} else {\n  context.set(\"lastMessage\", msg.payload);\n  clearTimeout(context.timeout);\n  context.timeout = setTimeout(() => {\n    node.send({ payload: context.get(\"lastMessage\") });\n    clearTimeout(context.timeout);\n    delete context.timeout;\n  }, delay);\n}\n\nvar file = 'routine_projectname'\nlet fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\n\nconst content = String(msg.payload).replace(/ /g, '_')\nfs.writeFile(filepath + file, content, err => {\n  if (err) {\n    return\n  }\n  });\nglobal.set('last_activity_timestamp', true)",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1578,7 +1578,7 @@
         "type": "function",
         "z": "481edaf6db5a7a54",
         "name": "enable",
-        "func": "msg.light = global.get('light');\nmsg.flag = global.get('flag');\nmsg.last_activity_timestamp = global.get('last_activity_timestamp')\n\nvar min = 1;\nvar max = 100000;\nvar random = Math.floor(Math.random() * (max - min + 1)) + min;\n\nvar formatted = random.toString().padStart(3, '0');\nmsg.payload=\"/tmp2/preview.jpg?ts=\" + msg.timestamp;\n\nif (global.get('flag_pw') == false){\n    if (msg.flag == true){\n        return msg\n    }\n    return \n}\nelse{\n    return msg\n}\n\n",
+        "func": "msg.light = global.get('light');\nmsg.flag = global.get('flag');\nmsg.last_activity_timestamp = global.get('last_activity_timestamp')\n\nif (typeof msg.last_activity_timestamp != \"number\") {\n    global.set('last_activity_timestamp', msg.timestamp)\n    msg.last_activity_timestamp = msg.timestamp\n}\n\nvar min = 1;\nvar max = 100000;\nvar random = Math.floor(Math.random() * (max - min + 1)) + min;\n\nvar formatted = random.toString().padStart(3, '0');\nmsg.payload=\"/tmp2/preview.jpg?ts=\" + msg.timestamp;\n\nif (global.get('flag_pw') == false){\n    if (msg.flag == true){\n        return msg\n    }\n    return \n}\nelse{\n    return msg\n}\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1701,7 +1701,7 @@
         "order": 1,
         "width": 7,
         "height": 9,
-        "format": "<style>\n  /* Define the color classes */\n  .btn-0 {\n    opacity: 0.4;\n  }\n\n  .btn-1 {\n    opacity: 1;\n\n  }\n\n  .btn-2 {\n    opacity: 1;\n  }\n</style>\n\n<div style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%;\">\n  <img ng-src=\"{{msg.payload}}\" style=\"width: 100%; height: 100%; object-position:top; object-fit: contain; vertical-align: top;\"/>\n  <div style=\"position: absolute; top: 3%; right: 3% ; height: 30% \">\n    <md-button class=\"button save\"\n      style=\"color: default; padding: 10px; margin: 0px 0px 0px 0px; width:100%; height: 27%;\"\n      ng-class=\"{'btn-0': msg.light == 0, 'btn-1': msg.light == 1, 'btn-2': msg.light == 2}\"\n      ng-click=\"send({light:toggleState()})\"><i class=\"fa fa-lightbulb-o fa-2x\"></i></md-button>\n  </div>\n  <div style=\"position: absolute; top: 13%; right: 3% ; width:10%; height: 30% \">\n    <md-button class=\"button save\"\n      style=\"color: default; padding: 10px; margin: 0px 0px 0px 0px; width:100%; height: 27%;\"\n      ng-class=\"{'btn-0': msg.state1 == 0, 'btn-1': msg.state1 == 2, }\" ng-click=\"send({state1:toggleState1()})\">\n      <i class=\"fa fa-cog\"></i>\n    </md-button>\n  </div>\n\n  <div\n    style=\"position: absolute; top: 20px; left: 10px; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 130px; height: 130px;\">\n\n\n\n    <div\n      style=\"display: flex; justify-content: center; align-items: center; width: 100%; height: 33.33%; margin-bottom: 10px;\">\n      <md-button class=\"button save\"\n        style=\"color: default; padding: 10px; margin: 0px 0px 0px 0px; width: 33.33%; height: 100%;\"\n        ng-click=\"send({payload: 'up'})\"><i class=\"fa fa-arrow-up\"></i></md-button>\n    </div>\n    <div\n      style=\"display: flex; justify-content: space-between; align-items: center; width: 100%; height: 33.33%; margin-bottom: 10px;\">\n      <md-button class=\"button save\" style=\"color: default; padding: 10px; margin: 0; width: 33.33%; height: 100%;\"\n        ng-click=\"send({payload: 'left'})\"><i class=\"fa fa-arrow-left\"></i></md-button>\n      <md-button class=\"button save\"\n        style=\"opacity: 0; color: default; padding: 10px; margin: 0; width: 33.33%; height: 100%; pointer-events: none;\">\n      </md-button>\n      <md-button class=\"button save\" style=\"color: default; padding: 10px; margin: 0; width: 33.33%; height: 100%;\"\n        ng-click=\"send({payload: 'right'})\"><i class=\"fa fa-arrow-right\"></i></md-button>\n    </div>\n    <div style=\"display: flex; justify-content: center; align-items: center; width: 100%; height: 33.33%;\">\n      <md-button class=\"button save\"\n        style=\"color: default; padding: 10px; margin: 0px 0px 0px 0px; width: 33.33%; height: 100%;\"\n        ng-click=\"send({payload: 'down'})\"><i class=\"fa fa-arrow-down\"></i></md-button>\n    </div>\n  </div>\n</div>\n\n<script>\n  // Define the button state and label\nvar state = 1;\nvar state1 = 0;\n\n// Initialize the button state and label\nfunction init() {\n    // Get the current state from the incoming message, if any\n    var msg = scope.$parent.msg;\n    if (msg) {\n        state = msg.light;\n        state1 = msg.state1\n    }\n}\n\n// Toggle the button state and label\nfunction toggleState() {\n    state = (state + 1) % 2\n    return state\n}\nfunction toggleState1() {\n    state1 = (state1 + 1) % 2\n    return state1\n}\nscope.toggleState1 = toggleState1;\nscope.state1 = state1;\nscope.toggleState = toggleState;\nscope.state = state;\n</script>",
+        "format": "<style>\n  /* Define the color classes */\n  .btn-0 {\n    opacity: 0.4;\n  }\n\n  .btn-1 {\n    opacity: 1;\n\n  }\n\n  .btn-2 {\n    opacity: 1;\n  }\n</style>\n\n<div style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%;\">\n  <img ng-src=\"{{msg.payload}}\" style=\"width: 100%; height: 100%; object-position:top; object-fit: contain; vertical-align: top;\"/>\n  <div style=\"position: absolute; top: 3%; right: 3% ; height: 30% \">\n    <md-button class=\"button save\"\n      style=\"color: default; padding: 10px; margin: 0px 0px 0px 0px; width:100%; height: 27%;\"\n      ng-class=\"{'btn-0': msg.light == 0, 'btn-1': msg.light == 1, 'btn-2': msg.light == 2}\"\n      ng-click=\"send({light:toggleState()})\"><i class=\"fa fa-lightbulb-o fa-2x\"></i></md-button>\n  </div>\n  <div style=\"position: absolute; top: 13%; right: 3% ; width:10%; height: 30% \">\n    <md-button class=\"button save\"\n      style=\"color: default; padding: 10px; margin: 0px 0px 0px 0px; width:100%; height: 27%;\"\n      ng-class=\"{'btn-0': msg.state1 == 0, 'btn-1': msg.state1 == 2, }\" ng-click=\"send({state1:toggleState1()})\">\n      <i class=\"fa fa-cog\"></i>\n    </md-button>\n  </div>\n\n  <div\n    style=\"position: absolute; top: 20px; left: 10px; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 130px; height: 130px;\">\n\n\n\n    <div\n      style=\"display: flex; justify-content: center; align-items: center; width: 100%; height: 33.33%; margin-bottom: 10px;\">\n      <md-button class=\"button save\"\n        style=\"color: default; padding: 10px; margin: 0px 0px 0px 0px; width: 33.33%; height: 100%;\"\n        ng-click=\"send({payload: 'up', update_activity: true})\"><i class=\"fa fa-arrow-up\"></i></md-button>\n    </div>\n    <div\n      style=\"display: flex; justify-content: space-between; align-items: center; width: 100%; height: 33.33%; margin-bottom: 10px;\">\n      <md-button class=\"button save\" style=\"color: default; padding: 10px; margin: 0; width: 33.33%; height: 100%;\"\n        ng-click=\"send({payload: 'left', update_activity: true})\"><i class=\"fa fa-arrow-left\"></i></md-button>\n      <md-button class=\"button save\"\n        style=\"opacity: 0; color: default; padding: 10px; margin: 0; width: 33.33%; height: 100%; pointer-events: none;\">\n      </md-button>\n      <md-button class=\"button save\" style=\"color: default; padding: 10px; margin: 0; width: 33.33%; height: 100%;\"\n        ng-click=\"send({payload: 'right', update_activity: true})\"><i class=\"fa fa-arrow-right\"></i></md-button>\n    </div>\n    <div style=\"display: flex; justify-content: center; align-items: center; width: 100%; height: 33.33%;\">\n      <md-button class=\"button save\"\n        style=\"color: default; padding: 10px; margin: 0px 0px 0px 0px; width: 33.33%; height: 100%;\"\n        ng-click=\"send({payload: 'down', update_activity: true})\"><i class=\"fa fa-arrow-down\"></i></md-button>\n    </div>\n  </div>\n</div>\n\n<script>\n  // Define the button state and label\nvar state = 1;\nvar state1 = 0;\n\n// Initialize the button state and label\nfunction init() {\n    // Get the current state from the incoming message, if any\n    var msg = scope.$parent.msg;\n    if (msg) {\n        state = msg.light;\n        state1 = msg.state1\n    }\n}\n\n// Toggle the button state and label\nfunction toggleState() {\n    state = (state + 1) % 2\n    return state\n}\nfunction toggleState1() {\n    state1 = (state1 + 1) % 2\n    return state1\n}\nscope.toggleState1 = toggleState1;\nscope.state1 = state1;\nscope.toggleState = toggleState;\nscope.state = state;\n</script>",
         "storeOutMessages": false,
         "fwdInMessages": false,
         "resendOnRefresh": false,
@@ -1712,7 +1712,9 @@
         "wires": [
             [
                 "417f653ca0dfdcfc",
-                "180476141c2a44ad"
+                "180476141c2a44ad",
+                "0d270e0d014b7c7d",
+                "0f67bed1fdbeb717"
             ]
         ]
     },
@@ -1772,7 +1774,7 @@
         "type": "function",
         "z": "481edaf6db5a7a54",
         "name": "global",
-        "func": "if (typeof msg.light !== \"undefined\"){\n    global.set('light',msg.light)\n}\nif (typeof msg.state1 !== \"undefined\"){\n    global.set('state1',msg.state1)\n}\nreturn msg",
+        "func": "if (typeof msg.light !== \"undefined\"){\n    global.set('light',msg.light)\n}\nif (typeof msg.state1 !== \"undefined\") {\n    global.set('state1', msg.state1)\n}\nif (typeof msg.update_activity !== \"undefined\") {\n    global.set('last_activity_timestamp', msg.timestamp)\n}\n\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1855,7 +1857,7 @@
         "type": "function",
         "z": "481edaf6db5a7a54",
         "name": "rate",
-        "func": "const delay = 100; // 100 ms delay\n\nif (!context.timeout) {\n    context.timeout = setTimeout(() => {\n        node.send({ payload: msg.payload });\n        clearTimeout(context.timeout);\n        delete context.timeout;\n    }, delay);\n} else {\n    context.set(\"lastMessage\", msg.payload);\n    clearTimeout(context.timeout);\n    context.timeout = setTimeout(() => {\n        node.send({ payload: context.get(\"lastMessage\") });\n        clearTimeout(context.timeout);\n        delete context.timeout;\n    }, delay);\n}\nvar file = 'cam_shutter'\nlet fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\nconst content = String(msg.payload * 1000)\nfs.writeFile(filepath + file, content, err => {\n    if (err) {\n        return\n    }\n});",
+        "func": "const delay = 100; // 100 ms delay\n\nif (!context.timeout) {\n    context.timeout = setTimeout(() => {\n        node.send({ payload: msg.payload });\n        clearTimeout(context.timeout);\n        delete context.timeout;\n    }, delay);\n} else {\n    context.set(\"lastMessage\", msg.payload);\n    clearTimeout(context.timeout);\n    context.timeout = setTimeout(() => {\n        node.send({ payload: context.get(\"lastMessage\") });\n        clearTimeout(context.timeout);\n        delete context.timeout;\n    }, delay);\n}\nvar file = 'cam_shutter'\nlet fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\nconst content = String(msg.payload * 1000)\nfs.writeFile(filepath + file, content, err => {\n    if (err) {\n        return\n    }\n});\nglobal.set('last_activity_timestamp', true)",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1922,7 +1924,7 @@
         "order": 5,
         "width": 7,
         "height": 1,
-        "format": "<div\n  style=\"overflow:hidden; position: absolute; top: 0; left: 4px; width: 98%; height: 100%;transform: translateY(-35%);\">\n  <md-card>\n    <style>\n      .slider-container {\n        transform: translateY(-20%);\n        display: flex;\n        flex-direction: column;\n        width: 100%;\n        overflow: hidden;\n        margin: 0 0;\n      }\n\n      .slider-container::-webkit-scrollbar-thumb {\n        background-color: transparent;\n      }\n\n      .slider-container::-webkit-scrollbar-track {\n        background-color: transparent;\n      }\n\n      .top-row {\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n        position: relative;\n        vertical-align: text-top;\n        z-index: 1;\n        top: -35%;\n      }\n\n      .slider-label {\n        text-align: left;\n      }\n\n      .value-input {\n        width: 20%;\n        text-align: middle;\n        transform: translateY(12%) !important;\n      }\n\n      .value-input input::-webkit-inner-spin-button,\n      .value-input input::-webkit-outer-spin-button {\n        -webkit-appearance: none;\n        margin: 0;\n      }\n\n      .value-input input {\n        -moz-appearance: textfield;\n      }\n\n      .slider-row {\n        position: relative;\n        left: 5% !important;\n        width: 70% !important;\n        top: -100% !important;\n        transform: translateY(-120%) !important;\n        z-index: 1;\n      }\n    </style>\n    <div class=\"slider-container\">\n      <div class=\"top-row\">\n        <div class=\"slider-label\">\n          <span>{{sliderName}}</span>\n        </div>\n        <div class=\"value-input\" style=\"text-align: center;\">\n          <md-input-container>\n            <input aria-label=\"value\" type=\"number\" ng-model=\"sliderValue\" ng-change=\"validateAndUpdateValue(sliderValue)\">\n          </md-input-container>\n        </div>\n      </div>\n      <div class=\"slider-row\">\n        <md-slider flex min=\"{{minValue}}\" max=\"{{maxValue}}\" ng-model=\"sliderValue\"          ng-change=\"updateSliderValue(sliderValue)\" aria-label=\"slider\" step=\"{{stepValue}}\">\n        </md-slider>\n      </div>\n    </div>\n</div>\n<script>\n  (function(scope) {\n        scope.sliderValue = 0;\n        scope.minValue = 10;\n        scope.maxValue = 400;\n        scope.stepValue = 10;\n        scope.sliderName =\"Photos\";\n\n        scope.updateSliderValue = function(value) {\n          scope.send({payload: value});\n        };\n\n        scope.validateAndUpdateValue = function(value) {\n          if (value < scope.minValue) {\n            scope.sliderValue = scope.minValue;\n          } else if (value > scope.maxValue) {\n            scope.sliderValue = scope.maxValue;\n          } else {\n            scope.sliderValue = value;\n          }\n          scope.updateSliderValue(scope.sliderValue);\n        };\n\n        scope.$watch('msg', function(msg) {\n          if (msg && msg.hasOwnProperty('payload')) {\n            scope.sliderValue = msg.payload;\n          }\n        });\n    })(scope);\n</script>\n</md-card>",
+        "format": "<div\n  style=\"overflow:hidden; position: absolute; top: 0; left: 4px; width: 98%; height: 100%;transform: translateY(-35%);\">\n  <md-card>\n    <style>\n      .slider-container {\n        transform: translateY(-20%);\n        display: flex;\n        flex-direction: column;\n        width: 100%;\n        overflow: hidden;\n        margin: 0 0;\n      }\n\n      .slider-container::-webkit-scrollbar-thumb {\n        background-color: transparent;\n      }\n\n      .slider-container::-webkit-scrollbar-track {\n        background-color: transparent;\n      }\n\n      .top-row {\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n        position: relative;\n        vertical-align: text-top;\n        z-index: 1;\n        top: -35%;\n      }\n\n      .slider-label {\n        text-align: left;\n      }\n\n      .value-input {\n        width: 20%;\n        text-align: middle;\n        transform: translateY(12%) !important;\n      }\n\n      .value-input input::-webkit-inner-spin-button,\n      .value-input input::-webkit-outer-spin-button {\n        -webkit-appearance: none;\n        margin: 0;\n      }\n\n      .value-input input {\n        -moz-appearance: textfield;\n      }\n\n      .slider-row {\n        position: relative;\n        left: 5% !important;\n        width: 70% !important;\n        top: -100% !important;\n        transform: translateY(-120%) !important;\n        z-index: 1;\n      }\n    </style>\n    <div class=\"slider-container\">\n      <div class=\"top-row\">\n        <div class=\"slider-label\">\n          <span>{{sliderName}}</span>\n        </div>\n        <div class=\"value-input\" style=\"text-align: center;\">\n          <md-input-container>\n            <input aria-label=\"value\" type=\"number\" ng-model=\"sliderValue\" ng-change=\"validateAndUpdateValue(sliderValue)\">\n          </md-input-container>\n        </div>\n      </div>\n      <div class=\"slider-row\">\n        <md-slider flex min=\"{{minValue}}\" max=\"{{maxValue}}\" ng-model=\"sliderValue\"          ng-change=\"updateSliderValue(sliderValue)\" aria-label=\"slider\" step=\"{{stepValue}}\">\n        </md-slider>\n      </div>\n    </div>\n</div>\n<script>\n  (function(scope) {\n        scope.sliderValue = 0;\n        scope.minValue = 10;\n        scope.maxValue = 400;\n        scope.stepValue = 10;\n        scope.sliderName =\"Photos\";\n\n        scope.updateSliderValue = function(value) {\n          scope.send({payload: value, update_activity: true});\n        };\n\n        scope.validateAndUpdateValue = function(value) {\n          if (value < scope.minValue) {\n            scope.sliderValue = scope.minValue;\n          } else if (value > scope.maxValue) {\n            scope.sliderValue = scope.maxValue;\n          } else {\n            scope.sliderValue = value;\n          }\n          scope.updateSliderValue(scope.sliderValue);\n        };\n\n        scope.$watch('msg', function(msg) {\n          if (msg && msg.hasOwnProperty('payload')) {\n            scope.sliderValue = msg.payload;\n          }\n        });\n    })(scope);\n</script>\n</md-card>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -2218,7 +2220,7 @@
         "type": "function",
         "z": "481edaf6db5a7a54",
         "name": "msg",
-        "func": "global.set('flag_pw', true)\nglobal.set('flag', false)\nmsg.enabled = true\nreturn msg\n",
+        "func": "global.set('flag_pw', true)\nglobal.set('last_activity_timestamp', true)\nglobal.set('flag', false)\nmsg.enabled = true\nreturn msg\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2532,7 +2534,7 @@
         "type": "function",
         "z": "481edaf6db5a7a54",
         "name": "rate",
-        "func": "const delay = 100; // 100 ms delay\n\nif (!context.timeout) {\n    context.timeout = setTimeout(() => {\n        node.send({ payload: msg.payload });\n        clearTimeout(context.timeout);\n        delete context.timeout;\n    }, delay);\n} else {\n    context.set(\"lastMessage\", msg.payload);\n    clearTimeout(context.timeout);\n    context.timeout = setTimeout(() => {\n        node.send({ payload: context.get(\"lastMessage\") });\n        clearTimeout(context.timeout);\n        delete context.timeout;\n    }, delay);\n}\nvar file = 'cam_focus_min'\nlet fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\nconst content = String(msg.payload)\nfs.writeFile(filepath + file, content, err => {\n    if (err) {\n        return\n    }\n    return msg\n});\n",
+        "func": "const delay = 100; // 100 ms delay\n\nif (!context.timeout) {\n    context.timeout = setTimeout(() => {\n        node.send({ payload: msg.payload });\n        clearTimeout(context.timeout);\n        delete context.timeout;\n    }, delay);\n} else {\n    context.set(\"lastMessage\", msg.payload);\n    clearTimeout(context.timeout);\n    context.timeout = setTimeout(() => {\n        node.send({ payload: context.get(\"lastMessage\") });\n        clearTimeout(context.timeout);\n        delete context.timeout;\n    }, delay);\n}\nvar file = 'cam_focus_min'\nlet fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\nconst content = String(msg.payload)\nfs.writeFile(filepath + file, content, err => {\n    if (err) {\n        return\n    }\n    return msg\n});\nglobal.set('last_activity_timestamp', true)",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2551,7 +2553,7 @@
         "type": "function",
         "z": "481edaf6db5a7a54",
         "name": "rate",
-        "func": "const delay = 100; // 100 ms delay\n\nif (!context.timeout) {\n    context.timeout = setTimeout(() => {\n        node.send({ payload: msg.payload });\n        clearTimeout(context.timeout);\n        delete context.timeout;\n    }, delay);\n} else {\n    context.set(\"lastMessage\", msg.payload);\n    clearTimeout(context.timeout);\n    context.timeout = setTimeout(() => {\n        node.send({ payload: context.get(\"lastMessage\") });\n        clearTimeout(context.timeout);\n        delete context.timeout;\n    }, delay);\n}\nvar file = 'cam_focus_max'\nlet fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\nconst content = String(msg.payload)\nfs.writeFile(filepath + file, content, err => {\n    if (err) {\n        return\n    }\n    return msg\n});",
+        "func": "const delay = 100; // 100 ms delay\n\nif (!context.timeout) {\n    context.timeout = setTimeout(() => {\n        node.send({ payload: msg.payload });\n        clearTimeout(context.timeout);\n        delete context.timeout;\n    }, delay);\n} else {\n    context.set(\"lastMessage\", msg.payload);\n    clearTimeout(context.timeout);\n    context.timeout = setTimeout(() => {\n        node.send({ payload: context.get(\"lastMessage\") });\n        clearTimeout(context.timeout);\n        delete context.timeout;\n    }, delay);\n}\nvar file = 'cam_focus_max'\nlet fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\nconst content = String(msg.payload)\nfs.writeFile(filepath + file, content, err => {\n    if (err) {\n        return\n    }\n    return msg\n});\nglobal.set('last_activity_timestamp', true)",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2758,23 +2760,6 @@
         ]
     },
     {
-        "id": "643e44a9e20e3448",
-        "type": "function",
-        "z": "481edaf6db5a7a54",
-        "name": "Set Global RingLight Enabled",
-        "func": "let last_inactivity_timestamp = global.get('last_inactivity_timestamp')\n\nlet inactivity_time = msg.timestamp - last_inactivity_timestamp\nnode.warn(msg.last_inactivity_timestamp)\nmsg.inactivity_time = inactivity_time\nglobal.set('inactivity_time', inactivity_time)\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 250,
-        "y": 1000,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "4eae83c1ee88f359",
         "type": "debug",
         "z": "481edaf6db5a7a54",
@@ -2783,18 +2768,19 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
+        "complete": "inactivity_counter",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
         "x": 640,
-        "y": 900,
+        "y": 640,
         "wires": []
     },
     {
         "id": "59f520dbfeb97d49",
         "type": "ui_template",
         "z": "481edaf6db5a7a54",
+        "d": true,
         "group": "365a30d0dfa83e95",
         "name": "",
         "order": 14,
@@ -2807,7 +2793,7 @@
         "templateScope": "local",
         "className": "",
         "x": 640,
-        "y": 660,
+        "y": 680,
         "wires": [
             []
         ]
@@ -2816,11 +2802,11 @@
         "id": "be7691b9bec7d06a",
         "type": "python3-function",
         "z": "481edaf6db5a7a54",
-        "name": "",
-        "func": "from OpenScan import ringlight\n\nif 'last_activity_timestamp' in msg:\n    last_activity_timestamp = msg['last_activity_timestamp']\n    timestamp = msg['timestamp']\n    inactivity_counter = int((timestamp - last_activity_timestamp)/1000)\n    msg['inactivity_counter'] = inactivity_counter\n    if inactivity_counter > 10:\n        ringlight(1, False)        \n        ringlight(2, False)\n        msg['light'] = 0\n    else:\n        ringlight(1, True)        \n        ringlight(2, True)\n        msg['light'] = 1\n\n\n\n\nreturn msg",
+        "name": "Ringlight Switch",
+        "func": "from OpenScan import ringlight, load_int\n\nscanning = msg['flag']\n\nif 'last_activity_timestamp' in msg:\n    last_activity_timestamp = msg['last_activity_timestamp']\n    timestamp = msg['timestamp']\n    inactivity_counter = int((timestamp - last_activity_timestamp)/1000)\n    msg['inactivity_counter'] = inactivity_counter\n\n    ringlight_timeout = load_int('ringlight_timeout')\n\n    if not scanning:\n        if inactivity_counter > ringlight_timeout:\n            ringlight(1, False)        \n            ringlight(2, False)\n            msg['light'] = 0\n        else:\n            ringlight(1, True)        \n            ringlight(2, True)\n            msg['light'] = 1\n    else:\n        ringlight(1, True)        \n        ringlight(2, True)\n        msg['light'] = 1\n    \n\n\nreturn msg",
         "outputs": 1,
-        "x": 410,
-        "y": 740,
+        "x": 420,
+        "y": 840,
         "wires": [
             [
                 "59f520dbfeb97d49",
@@ -2828,8 +2814,7 @@
                 "d1b87196ae5373ed",
                 "41e6a4649b6afbfb",
                 "85a268108250ba88",
-                "4eae83c1ee88f359",
-                "0f67bed1fdbeb717"
+                "4eae83c1ee88f359"
             ]
         ]
     },
@@ -2838,14 +2823,14 @@
         "type": "function",
         "z": "481edaf6db5a7a54",
         "name": "Set global inactivity timestamp",
-        "func": "if (typeof msg.update_last_activity_timestamp !== \"undefined\") {\n    if (msg.update_last_activity_timestamp){\n        global.set('last_activity_timestamp', msg.timestamp)\n    }\n}",
+        "func": "if (msg.update_activity){\n    global.set('last_activity_timestamp', msg.timestamp)\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 890,
-        "y": 180,
+        "x": 950,
+        "y": 940,
         "wires": [
             []
         ]
@@ -2855,23 +2840,23 @@
         "type": "debug",
         "z": "481edaf6db5a7a54",
         "name": "debug 8",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "inactivity_counter",
-        "targetType": "msg",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 640,
-        "y": 600,
+        "x": 880,
+        "y": 1080,
         "wires": []
     },
     {
         "id": "cdd0ee5da46aa461",
         "type": "inject",
         "z": "481edaf6db5a7a54",
-        "name": "",
+        "name": "Timestamp",
         "props": [
             {
                 "p": "timestamp",
@@ -2883,13 +2868,13 @@
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "1",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "0.5",
         "topic": "",
-        "x": 650,
-        "y": 320,
+        "x": 690,
+        "y": 940,
         "wires": [
             [
                 "0d270e0d014b7c7d"
@@ -4230,7 +4215,7 @@
         "name": "Network",
         "info": "",
         "x": 100,
-        "y": 760,
+        "y": 820,
         "wires": []
     },
     {
@@ -7513,7 +7498,8 @@
                 "9ce01c8ba97932c1",
                 "81356177176eebcf",
                 "d54b85891248ba88",
-                "53681e53353db898"
+                "53681e53353db898",
+                "fe499ec323bb8aba"
             ]
         ]
     },
@@ -7625,7 +7611,7 @@
         "z": "e43a27722b508115",
         "name": "Reset default",
         "group": "4390b2ebcbbe104c",
-        "order": 6,
+        "order": 8,
         "width": 6,
         "height": 1,
         "passthru": false,
@@ -7640,7 +7626,7 @@
         "topic": "Restore default settings?",
         "topicType": "str",
         "x": 110,
-        "y": 680,
+        "y": 740,
         "wires": [
             [
                 "53e6681d7254d484"
@@ -7663,7 +7649,7 @@
         "topic": "",
         "name": "",
         "x": 270,
-        "y": 680,
+        "y": 740,
         "wires": [
             [
                 "c11e79cfa7bc10b7"
@@ -7682,7 +7668,7 @@
         "finalize": "",
         "libs": [],
         "x": 410,
-        "y": 680,
+        "y": 740,
         "wires": [
             [
                 "307782d10c1acdaf"
@@ -7699,7 +7685,7 @@
             "38783aea9cc317a6"
         ],
         "x": 505,
-        "y": 680,
+        "y": 740,
         "wires": []
     },
     {
@@ -7865,7 +7851,7 @@
         "func": "import os\nfrom time import sleep\nsleep(1.5)\nimport RPi.GPIO as GPIO\nGPIO.setwarnings(False)\nGPIO.cleanup()\nos.system('reboot -h')\n",
         "outputs": 1,
         "x": 270,
-        "y": 560,
+        "y": 620,
         "wires": [
             []
         ]
@@ -7881,7 +7867,7 @@
             "fe3a855fee9e28c6"
         ],
         "x": 155,
-        "y": 560,
+        "y": 620,
         "wires": [
             [
                 "e2411b49791840e0"
@@ -8917,7 +8903,7 @@
         "func": "import os\nfrom time import sleep\nsleep(1.5)\nimport RPi.GPIO as GPIO\nGPIO.setwarnings(False)\nGPIO.cleanup()\nos.system('service flask restart')\nos.system('service nodered restart')\n",
         "outputs": 1,
         "x": 300,
-        "y": 600,
+        "y": 660,
         "wires": [
             []
         ]
@@ -8931,7 +8917,7 @@
             "3502d0191156e12e"
         ],
         "x": 155,
-        "y": 600,
+        "y": 660,
         "wires": [
             [
                 "d9d7acf381c002cf"
@@ -9597,6 +9583,85 @@
         "statusType": "auto",
         "x": 720,
         "y": 920,
+        "wires": []
+    },
+    {
+        "id": "0d2f917441eda6d4",
+        "type": "ui_text_input",
+        "z": "e43a27722b508115",
+        "name": "ringlight_timeout",
+        "label": "",
+        "tooltip": "",
+        "group": "4390b2ebcbbe104c",
+        "order": 7,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 430,
+        "y": 560,
+        "wires": [
+            [
+                "5a4a5bf4c5e35187"
+            ]
+        ]
+    },
+    {
+        "id": "fe499ec323bb8aba",
+        "type": "function",
+        "z": "e43a27722b508115",
+        "name": "loadI",
+        "func": "var file = 'ringlight_timeout'\nlet fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\nconst data = fs.readFileSync(filepath+file, 'utf8');\nmsg.payload = parseInt(data);\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 560,
+        "wires": [
+            [
+                "0d2f917441eda6d4"
+            ]
+        ]
+    },
+    {
+        "id": "5a4a5bf4c5e35187",
+        "type": "function",
+        "z": "e43a27722b508115",
+        "name": "write",
+        "func": "var file = 'ringlight_timeout'\nlet fs = global.get('fs');\nvar filepath = '/home/pi/OpenScan/settings/';\nconst content = String(msg.payload)\nfs.writeFile(filepath + file, content, err => {\n  if (err) {\n    return\n  }\n  });",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "28e529ed101fbbf5",
+        "type": "ui_text",
+        "z": "e43a27722b508115",
+        "group": "4390b2ebcbbe104c",
+        "order": 6,
+        "width": 3,
+        "height": 1,
+        "name": "light_timeout_label",
+        "label": "Light Timeout",
+        "format": "",
+        "layout": "row-left",
+        "className": "",
+        "x": 790,
+        "y": 560,
         "wires": []
     },
     {
