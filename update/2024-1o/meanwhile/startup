@@ -35,3 +35,8 @@ fi
 if [ ! -f $settings_folder/rotor_endstop_pushed ]; then
     echo 300 > $settings_folder/ringlight_timeout
 fi
+
+# Clean OpenScan.py
+if [ -f /usr/lib/python3/dist-packages/OpenScan.py ];
+  rm -fr /usr/lib/python3/dist-packages/OpenScan.py
+fi

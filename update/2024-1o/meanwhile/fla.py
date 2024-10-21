@@ -4,7 +4,7 @@ from flask_restx import Resource, Api, Namespace
 from picamera2 import Picamera2
 from PIL import Image, ImageDraw, ImageOps, ImageFilter, ImageEnhance, ImageChops, ImageFont
 from time import sleep, time
-from OpenScan import load_int, load_float, load_bool, ringlight, motorrun
+from OpenScanCommon import load_int, load_float, load_bool, ringlight, motorrun
 from OpenScanSettings import OpenScanSettings, get_openscan_settings, export_settings_to_file
 import RPi.GPIO as GPIO
 from math import sqrt
