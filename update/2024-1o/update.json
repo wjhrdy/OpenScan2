@@ -51,12 +51,12 @@
         "2": {
             "src": "beta/fla.py",
             "dst": "/home/pi/OpenScan/files/fla.py",
-            "filesize": 19678
+            "filesize": 19684
         },
         "3": {
             "src": "beta/flows.json",
             "dst": "/home/pi/OpenScan/settings/.node-red/flows.json",
-            "filesize": 372411
+            "filesize": 372657
         },
         "4": {
             "src": "beta/settings.js",
@@ -64,8 +64,8 @@
             "filesize": 21386
         },
         "5": {
-            "src": "beta/OpenScan.py",
-            "dst": "/usr/lib/python3/dist-packages/OpenScan.py",
+            "src": "beta/OpenScanCommon.py",
+            "dst": "/usr/lib/python3/dist-packages/OpenScanCommon.py",
             "filesize": 10529
         },
         "6": {
@@ -81,7 +81,7 @@
         "8": {
             "src": "beta/startup",
             "dst": "/root/scripts/startup",
-            "filesize": 1521
+            "filesize": 1656
         }
     },
     "meanwhile": {
