@@ -81,7 +81,7 @@
         "8": {
             "src": "beta/startup",
             "dst": "/root/scripts/startup",
-            "filesize": 1656
+            "filesize": 1659
         }
     },
     "meanwhile": {
@@ -123,7 +123,7 @@
         "8": {
             "src": "meanwhile/startup",
             "dst": "/root/scripts/startup",
-            "filesize": 1656
+            "filesize": 1659
         }
     }
 }
