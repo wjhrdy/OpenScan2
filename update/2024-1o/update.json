@@ -113,7 +113,7 @@
         "6": {
             "src": "meanwhile/OpenScanCommon.py",
             "dst": "/usr/lib/python3/dist-packages/OpenScanCommon.py",
-            "filesize": 10537
+            "filesize": 10550
         },
         "7": {
             "src": "meanwhile/OpenScanSettings.py",

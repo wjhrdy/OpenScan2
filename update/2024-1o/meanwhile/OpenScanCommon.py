@@ -126,7 +126,7 @@ def OpenScanCloud(cmd, msg):
         r = type('obj', (object,), {'status_code' : 404, 'text':None})
     return r
 
-def camera(cmd, msg = {}):
+def send_camera_command(cmd, msg = {}):
     try:
         r = requests.get(openscan_api + cmd, params=msg)
         return r.status_code
