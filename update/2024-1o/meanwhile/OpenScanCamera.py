@@ -12,10 +12,11 @@ class OpenCamera:
     def __init__(self) -> None:
         self.camera = load_str('camera')
         self.cam_mode = 0
-        if self.camera == 'imx519':
-            self.arducam_imx519_init()
+        self.arducams = ['imx519', 'arducam_64mp']
+        if self.camera in self.arducams:
+           self.arducam_init()
 
-    def arducam_imx519_init(self):
+    def arducam_init(self):
         self.picam2 = Picamera2()
         preview_config = self.picam2.create_preview_configuration(
             main={"size": (2028, 1520)},
@@ -141,7 +142,7 @@ class OpenCamera:
 
     def camera_take_photo(self):
         print(self.camera)
-        if self.camera == 'imx519':
+        if self.camera in self.arducams:
             starttime = time()
 
             cropx = load_int('cam_cropx')/200
@@ -180,7 +181,7 @@ class OpenCamera:
             img.save("/home/pi/OpenScan/tmp2/preview.jpg", quality=load_int('cam_jpeg_quality'))
             print("total " + str(int(1000*(time()-starttime))) + "ms")
 
-    
+
     def camera_plot_orb_keypoints(self, pil_image):
         downscale = 2
         # Read the image from the given image path
@@ -209,34 +210,34 @@ class OpenCamera:
         # Save the image with keypoints to the given output path
         return pil_image
 
-    
+
     def camera_focus(self, focus):
-        if self.camera == 'imx519':
+        if self.camera in self.arducams:
             self.picam2.set_controls({"AfMode": 0, "LensPosition": focus})
             print("focus:" + str(focus))
 
     def camera_exposure(self, exposure):
         '''Set camera exposure time'''
-        if self.camera == 'imx519':
+        if self.camera in self.arducams:
             exposure = int(exposure)
             self.picam2.controls.AnalogueGain = 1.0
             self.picam2.controls.ExposureTime = exposure
 
     def camera_contrast(self, contrast):
         '''Set camera contrast'''
-        if self.camera == 'imx519':
+        if self.camera in self.arducams:
             contrast = float(contrast)
             self.picam2.controls.Contrast = contrast
 
     def camera_saturation(self, saturation):
         '''Set camera saturation'''
-        if self.camera == 'imx519':
+        if self.camera in self.arducams:
             saturation = float(saturation)
             self.picam2.controls.Saturation = saturation
 
     def switch_mode(self, mode):
         '''Switch camera mode'''
-        if self.camera == 'imx519':
+        if self.camera in self.arducams:
             self.cam_mode = int(mode)
             if self.cam_mode == 1:
                 self.picam2.switch_mode(self.capture_config)
@@ -244,11 +245,10 @@ class OpenCamera:
                 self.picam2.switch_mode(self.preview_config)
 
     def show_mode(self):
-        if self.camera == 'imx519':
+        if self.camera in self.arducams:
             return self.cam_mode
-    
+
     def focus_af(self):
-        if self.camera == 'imx519':
+        if self.camera in self.arducams:
             '''Trigger auto focus'''
             self.picam2.set_controls({"AfMode": 1, "AfTrigger": 0})  # --> wait 3-5s
-

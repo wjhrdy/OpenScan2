@@ -93,12 +93,12 @@
         "2": {
             "src": "meanwhile/fla.py",
             "dst": "/home/pi/OpenScan/files/fla.py",
-            "filesize": 22555
+            "filesize": 26990
         },
         "3": {
             "src": "meanwhile/flows.json",
             "dst": "/home/pi/OpenScan/settings/.node-red/flows.json",
-            "filesize": 372411
+            "filesize": 373633
         },
         "4": {
             "src": "meanwhile/settings.js",
@@ -113,7 +113,7 @@
         "6": {
             "src": "meanwhile/OpenScanCommon.py",
             "dst": "/usr/lib/python3/dist-packages/OpenScanCommon.py",
-            "filesize": 10529
+            "filesize": 10537
         },
         "7": {
             "src": "meanwhile/OpenScanSettings.py",
@@ -128,7 +128,7 @@
         "9": {
             "src": "meanwhile/OpenScanCamera.py",
             "dst": "/usr/lib/python3/dist-packages/OpenScanCamera.py",
-            "filesize": 9879
+            "filesize": 9947
         }
 
     }

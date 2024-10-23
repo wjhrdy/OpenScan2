@@ -1,6 +1,10 @@
 basepath = '/home/pi/OpenScan/'
 from os.path import isfile
 import os
+import requests
+
+openscan_api = 'http://127.0.0.1:1312/'
+
 
 def load_bool(name):
     filename = basepath+'settings/'+name
@@ -123,10 +127,8 @@ def OpenScanCloud(cmd, msg):
     return r
 
 def camera(cmd, msg = {}):
-    from requests import get
-    flask = 'http://127.0.0.1:1312/'
     try:
-        r = get(flask + cmd, params=msg)
+        r = requests.get(openscan_api + cmd, params=msg)
         return r.status_code
     except:
         return 400

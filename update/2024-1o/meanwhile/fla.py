@@ -1,7 +1,7 @@
 from zipfile import ZipFile
 from flask import Flask, request, redirect, send_file, send_from_directory
 from flask_restx import Resource, Api, Namespace
-from picamera2 import Picamera2
+from datetime import datetime
 from PIL import Image, ImageDraw, ImageOps, ImageFilter, ImageEnhance, ImageChops, ImageFont
 from time import sleep, time
 from OpenScanCommon import load_int, load_float, load_bool, ringlight, motorrun
@@ -94,6 +94,14 @@ class CameraManager:
             cls.logger = logging.getLogger('openscan.camera')
             cls.logger.info("Camera instance initialized")
         return cls._instance
+    
+    @classmethod
+    def get_camera_mode(cls):
+        return cls._cam_mode
+    
+    @classmethod
+    def set_camera_mode(cls, mode):
+        cls._cam_mode = mode
 
 
 def create_app():
@@ -525,16 +533,61 @@ def create_app():
 
     @camera_ns.route('/picam2_switch_mode')
     class CameraSwitchMode(Resource):
-        @camera_ns.doc(params={'mode': 'Camera mode (0 or 1)'})
+        @camera_ns.doc(params={'mode': 'Camera mode (0 for preview, 1 for capture)'})
+        @log_api_call
         def get(self):
-            '''Switch camera mode'''
-            global cam_mode
-            cam_mode = int(request.args.get('mode'))
-            if cam_mode == 1:
-                picam2.switch_mode(capture_config)
-            else:
-                picam2.switch_mode(preview_config)
-            return {'message': f'Camera mode switched to {cam_mode}'}, 200
+            '''
+            Switch camera mode between preview and capture configurations
+            
+            Args:
+                mode (int): 0 for preview mode, 1 for capture mode
+            '''
+            logger = logging.getLogger('openscan.camera')
+            
+            try:
+                # Get and validate mode parameter
+                mode_param = request.args.get('mode')
+                if mode_param is None:
+                    logger.error("Mode parameter is missing")
+                    return {'error': 'Mode parameter is required'}, 400
+                
+                try:
+                    mode = int(mode_param)
+                    if mode not in [0, 1]:
+                        raise ValueError("Mode must be 0 or 1")
+                except ValueError:
+                    logger.error(f"Invalid mode value provided: {mode_param}")
+                    return {'error': 'Mode must be 0 (preview) or 1 (capture)'}, 400
+                
+                # Get camera instance
+                camera = CameraManager.get_instance()
+                
+                # Log mode switch attempt
+                logger.info(f"Switching camera mode to: {'capture' if mode == 1 else 'preview'}")
+                
+                # Switch camera mode
+                if mode == 1:
+                    camera.picam2.switch_mode(camera.capture_config)
+                    logger.info("Switched to capture configuration")
+                else:
+                    camera.picam2.switch_mode(camera.preview_config)
+                    logger.info("Switched to preview configuration")
+                
+                # Update camera mode state
+                CameraManager.set_camera_mode(mode)
+                
+                return {
+                    'message': f'Camera mode switched to {"capture" if mode == 1 else "preview"}',
+                    'mode': mode,
+                    'configuration': 'capture' if mode == 1 else 'preview'
+                }, 200
+                
+            except AttributeError as e:
+                logger.error("Camera or configuration not properly initialized", exc_info=True)
+                return {'error': 'Camera not properly initialized'}, 500
+            except Exception as e:
+                logger.error(f"Failed to switch camera mode: {str(e)}", exc_info=True)
+                return {'error': 'Failed to switch camera mode'}, 500
 
     @camera_ns.route('/picam2_show_mode')
     class CameraShowMode(Resource):
@@ -545,10 +598,61 @@ def create_app():
 
     @camera_ns.route('/picam2_af')
     class AutoFocus(Resource):
+        @log_api_call
         def get(self):
-            '''Trigger auto focus'''
-            picam2.set_controls({"AfMode": 1, "AfTrigger": 0})  # --> wait 3-5s
-            return {'message': 'Auto focus triggered'}, 200
+            '''
+            Trigger camera auto focus
+            Waits for AF completion before returning
+            '''
+            logger = logging.getLogger('openscan.camera')
+            
+            try:
+                # Get camera instance
+                camera = CameraManager.get_instance()
+                
+                # Log AF initiation
+                logger.info("Initiating auto focus")
+                start_time = time.time()
+                
+                try:
+                    # Set auto focus mode and trigger
+                    camera.picam2.set_controls({
+                        "AfMode": 1,  # Auto focus mode
+                        "AfTrigger": 0  # Trigger AF
+                    })
+                    
+                    # Wait for AF to complete (3-5 seconds)
+                    wait_time = 4  # seconds
+                    logger.info(f"Waiting {wait_time} seconds for AF to complete")
+                    time.sleep(wait_time)
+                    
+                    # Calculate actual elapsed time
+                    elapsed_time = time.time() - start_time
+                    
+                    # Log successful completion
+                    logger.info(f"Auto focus completed after {elapsed_time:.2f} seconds")
+                    
+                    return {
+                        'message': 'Auto focus completed',
+                        'status': 'success',
+                        'elapsed_time': f'{elapsed_time:.2f}s',
+                        'timestamp': datetime.now().isoformat()
+                    }, 200
+                    
+                except Exception as e:
+                    logger.error(f"Error during auto focus operation: {str(e)}")
+                    return {
+                        'error': 'Auto focus operation failed',
+                        'details': str(e)
+                    }, 500
+                    
+            except AttributeError as e:
+                logger.error("Camera not properly initialized for auto focus", exc_info=True)
+                return {'error': 'Camera not properly initialized'}, 500
+                
+            except Exception as e:
+                logger.error(f"Failed to execute auto focus: {str(e)}", exc_info=True)
+                return {'error': 'Failed to execute auto focus'}, 500
 
     @motor_ns.route('/motor_run')
     class MotorRun(Resource):
@@ -597,3 +701,4 @@ app = create_app()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=1312, debug=True, threaded=True)
+
