@@ -8816,28 +8816,13 @@
         "highlight": "",
         "sendall": false,
         "outputs": 1,
-        "ok": "YES",
-        "cancel": "NO",
+        "ok": "NO",
+        "cancel": "YES",
         "raw": true,
         "className": "",
         "topic": "",
         "name": "Restart",
         "x": 600,
-        "y": 3840,
-        "wires": [
-            [
-                "d2db49796fe0da79"
-            ]
-        ]
-    },
-    {
-        "id": "d2db49796fe0da79",
-        "type": "python3-function",
-        "z": "e43a27722b508115",
-        "name": "",
-        "func": "print(msg['payload'])\nreturn msg",
-        "outputs": 1,
-        "x": 790,
         "y": 3840,
         "wires": [
             [
@@ -8970,7 +8955,7 @@
         "links": [
             "acfcc56da7ec7880"
         ],
-        "x": 925,
+        "x": 705,
         "y": 3840,
         "wires": []
     },
