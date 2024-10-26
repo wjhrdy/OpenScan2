@@ -38,7 +38,7 @@
         "8": {
             "src": "stable/startup",
             "dst": "/root/scripts/startup",
-            "filesize": 1146
+            "filesize": 1527
         }
     },
 
@@ -108,7 +108,7 @@
         "5": {
             "src": "meanwhile/startup",
             "dst": "/root/scripts/startup",
-            "filesize": 1659
+            "filesize": 1664
         },
         "6": {
             "src": "meanwhile/OpenScanCommon.py",

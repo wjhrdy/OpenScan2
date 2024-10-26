@@ -33,7 +33,7 @@ if [ ! -f $settings_folder/telegram_enable ]; then
 fi
 
 if [ ! -f $settings_folder/rotor_endstop_pushed ]; then
-    echo 300 > $settings_folder/ringlight_timeout
+    echo false > $settings_folder/rotor_endstop_pushed
 fi
 
 # Clean OpenScan.py

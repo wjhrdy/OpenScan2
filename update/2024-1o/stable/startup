@@ -21,3 +21,18 @@ echo `cat /etc/os-release |grep VERSION_CODENAME|cut -d= -f2` > $settings_folder
 if [[ $(cat $settings_folder/camera) != "imx519" || $(cat $settings_folder/camera) != "arducam64" ]]; then
   echo `libcamera-still  --list-cameras|head -3|tail -1|cut -d: -f2|cut -d[ -f1|awk '{$1=$1};1'` > $settings_folder/camera
 fi
+
+
+###### check if settings exist, set defaults instead
+
+if [ ! -f $settings_folder/ringlight_timeout ]; then
+    echo 300 > $settings_folder/ringlight_timeout
+fi
+
+if [ ! -f $settings_folder/telegram_enable ]; then
+    echo false > $settings_folder/telegram_enable
+fi
+
+if [ ! -f $settings_folder/rotor_endstop_pushed ]; then
+    echo false > $settings_folder/rotor_endstop_pushed
+fi
