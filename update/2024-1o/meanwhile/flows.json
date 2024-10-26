@@ -7885,7 +7885,7 @@
         "type": "python3-function",
         "z": "e43a27722b508115",
         "name": "reboot",
-        "func": "import os\nfrom time import sleep\nsleep(1.5)\nimport RPi.GPIO as GPIO\nGPIO.setwarnings(False)\nGPIO.cleanup()\nos.system('reboot -h')\n",
+        "func": "import os\nfrom time import sleep\nif msg['payload'] == 'YES':    \n    sleep(1.5)\n    import RPi.GPIO as GPIO\n    GPIO.setwarnings(False)\n    GPIO.cleanup()\n    os.system('reboot -h')\n",
         "outputs": 1,
         "x": 270,
         "y": 620,
