@@ -1579,7 +1579,7 @@
         "type": "function",
         "z": "481edaf6db5a7a54",
         "name": "enable",
-        "func": "msg.light = global.get('light');\nmsg.flag = global.get('flag');\nmsg.last_activity_timestamp = global.get('last_activity_timestamp')\n\nif (typeof msg.last_activity_timestamp != \"number\") {\n    global.set('last_activity_timestamp', msg.timestamp)\n    msg.last_activity_timestamp = msg.timestamp\n}\n\nvar min = 1;\nvar max = 100000;\nvar random = Math.floor(Math.random() * (max - min + 1)) + min;\n\nvar formatted = random.toString().padStart(3, '0');\nmsg.payload=\"/tmp2/preview.jpg?ts=\" + msg.timestamp;\n\nif (global.get('flag_pw') == false){\n    if (msg.flag == true){\n        return msg\n    }\n    return \n}\nelse{\n    return msg\n}\n\n",
+        "func": "msg.light = global.get('light');\nmsg.flag = global.get('flag');\nmsg.state1 = global.get('state1')\nmsg.last_activity_timestamp = global.get('last_activity_timestamp')\n\nif (typeof msg.last_activity_timestamp != \"number\") {\n    global.set('last_activity_timestamp', msg.timestamp)\n    msg.last_activity_timestamp = msg.timestamp\n}\n\nvar min = 1;\nvar max = 100000;\nvar random = Math.floor(Math.random() * (max - min + 1)) + min;\n\nvar formatted = random.toString().padStart(3, '0');\nmsg.payload=\"/tmp2/preview.jpg?ts=\" + msg.timestamp;\n\nif (global.get('flag_pw') == false){\n    if (msg.flag == true){\n        return msg\n    }\n    return \n}\nelse{\n    return msg\n}\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
