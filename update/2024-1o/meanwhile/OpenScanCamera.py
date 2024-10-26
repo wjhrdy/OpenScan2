@@ -18,14 +18,21 @@ class OpenCamera:
 
     def arducam_init(self):
         self.picam2 = Picamera2()
-        preview_config = self.picam2.create_preview_configuration(
+        img_size: dict = {}
+        if self.camera == 'arducam_64mp':
+            #img_size: dict = {"size": (4656, 3496)}
+            #img_size: dict = {"size": (6864, 5208)}
+            img_size: dict = {"size": (8064, 6048)}
+
+        self.preview_config = self.picam2.create_preview_configuration(
             main={"size": (2028, 1520)},
             controls={"FrameDurationLimits": (1, 1000000)}
         )
-        capture_config = self.picam2.create_still_configuration(
+        self.capture_config = self.picam2.create_still_configuration(
+            main=img_size,
             controls={"FrameDurationLimits": (1, 1000000)}
         )
-        self.picam2.configure(preview_config)
+        self.picam2.configure(self.preview_config)
         self.picam2.controls.AnalogueGain = 1.0
         self.picam2.start()
 
@@ -238,6 +245,7 @@ class OpenCamera:
     def switch_mode(self, mode):
         '''Switch camera mode'''
         if self.camera in self.arducams:
+            print(mode)
             self.cam_mode = int(mode)
             if self.cam_mode == 1:
                 self.picam2.switch_mode(self.capture_config)

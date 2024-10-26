@@ -543,6 +543,10 @@ def create_app():
                 mode (int): 0 for preview mode, 1 for capture mode
             '''
             logger = logging.getLogger('openscan.camera')
+            camera = CameraManager.get_instance()
+            print(hasattr(camera, 'picam2'))
+            print(hasattr(camera, 'preview_config'))
+            print(hasattr(camera, 'capture_config'))
             
             try:
                 # Get and validate mode parameter
@@ -559,18 +563,15 @@ def create_app():
                     logger.error(f"Invalid mode value provided: {mode_param}")
                     return {'error': 'Mode must be 0 (preview) or 1 (capture)'}, 400
                 
-                # Get camera instance
-                camera = CameraManager.get_instance()
-                
                 # Log mode switch attempt
                 logger.info(f"Switching camera mode to: {'capture' if mode == 1 else 'preview'}")
                 
                 # Switch camera mode
                 if mode == 1:
-                    camera.picam2.switch_mode(camera.capture_config)
+                    camera.switch_mode(1)
                     logger.info("Switched to capture configuration")
                 else:
-                    camera.picam2.switch_mode(camera.preview_config)
+                    camera.switch_mode(0)
                     logger.info("Switched to preview configuration")
                 
                 # Update camera mode state

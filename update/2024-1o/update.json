@@ -93,7 +93,7 @@
         "2": {
             "src": "meanwhile/fla.py",
             "dst": "/home/pi/OpenScan/files/fla.py",
-            "filesize": 26990
+            "filesize": 27028
         },
         "3": {
             "src": "meanwhile/flows.json",
@@ -128,7 +128,7 @@
         "9": {
             "src": "meanwhile/OpenScanCamera.py",
             "dst": "/usr/lib/python3/dist-packages/OpenScanCamera.py",
-            "filesize": 9947
+            "filesize": 10242
         }
 
     }
