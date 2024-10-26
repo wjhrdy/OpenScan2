@@ -8016,8 +8016,7 @@
         "wires": [
             [
                 "9959649037cb063b",
-                "042321dd888d3bad",
-                "083a8df274b9b1e2"
+                "042321dd888d3bad"
             ]
         ]
     },
@@ -8101,18 +8100,19 @@
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "60",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 620,
-        "y": 1080,
+        "x": 470,
+        "y": 1040,
         "wires": [
             [
-                "1eef47e0074545a9"
+                "1eef47e0074545a9",
+                "083a8df274b9b1e2"
             ]
         ]
     },
@@ -9551,7 +9551,8 @@
         "y": 1160,
         "wires": [
             [
-                "64a2e91c8a800306"
+                "64a2e91c8a800306",
+                "2d22f7cc8ac17e0e"
             ],
             [],
             []
@@ -9684,6 +9685,23 @@
         "className": "",
         "x": 790,
         "y": 560,
+        "wires": []
+    },
+    {
+        "id": "2d22f7cc8ac17e0e",
+        "type": "debug",
+        "z": "e43a27722b508115",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 1200,
         "wires": []
     },
     {
