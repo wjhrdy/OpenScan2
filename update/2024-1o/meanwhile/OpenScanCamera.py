@@ -20,20 +20,32 @@ class OpenCamera:
         self.picam2 = Picamera2()
         img_size: dict = {}
         if self.camera == 'arducam_64mp':
-            #img_size: dict = {"size": (4656, 3496)}
-            #img_size: dict = {"size": (6864, 5208)}
-            img_size: dict = {"size": (8064, 6048)}
-
+            # Full resolution for 64MP Hawkeye (9152x6944)
+            img_size: dict = {"size": (9152, 6944), "format": "RGB888"}
+            
+        # Configure preview with 1080p resolution for better performance
         self.preview_config = self.picam2.create_preview_configuration(
-            main={"size": (2028, 1520)},
-            controls={"FrameDurationLimits": (1, 1000000)}
+            main={"size": (1920, 1080), "format": "RGB888"},
+            controls={
+                "FrameDurationLimits": (33333, 1000000),  # 30fps max for preview
+                "AfMode": 1,  # Enable continuous autofocus for preview
+                "AfSpeed": 1  # Normal AF speed
+            }
         )
+        
+        # Configure capture for maximum resolution
         self.capture_config = self.picam2.create_still_configuration(
             main=img_size,
-            controls={"FrameDurationLimits": (1, 1000000)}
+            controls={
+                "FrameDurationLimits": (100000, 1000000),  # Longer exposure for full res
+                "AfMode": 1,  # Enable autofocus for capture
+                "AfSpeed": 2,  # Fast AF for capture
+                "AnalogueGain": 1.0,
+                "ColourGains": (1.0, 1.0)  # Neutral white balance
+            }
         )
+        
         self.picam2.configure(self.preview_config)
-        self.picam2.controls.AnalogueGain = 1.0
         self.picam2.start()
 
     def camera_highlight_sharpest_areas(self, image, threshold=load_int('cam_sharpness'), dilation_size=5):
@@ -152,9 +164,21 @@ class OpenCamera:
         if self.camera in self.arducams:
             starttime = time()
 
+            # Switch to capture mode if needed
+            if self.cam_mode != 1:
+                self.switch_mode(1)
+                sleep(0.5)  # Allow time for mode switch
+            
+            # Trigger autofocus before capture
+            if load_bool('cam_autofocus'):
+                self.focus_af()
+                sleep(0.5)  # Wait for AF to complete
+            
             cropx = load_int('cam_cropx')/200
             cropy = load_int('cam_cropy')/200
             rotation = load_int('cam_rotation')
+            
+            # Capture at full resolution
             img = self.picam2.capture_image()
 
             if self.cam_mode != 1:
@@ -258,5 +282,20 @@ class OpenCamera:
 
     def focus_af(self):
         if self.camera in self.arducams:
-            '''Trigger auto focus'''
-            self.picam2.set_controls({"AfMode": 1, "AfTrigger": 0})  # --> wait 3-5s
+            '''Trigger auto focus with PDAF support'''
+            try:
+                # Enable PDAF-based autofocus for 64MP Hawkeye
+                if self.camera == 'arducam_64mp':
+                    self.picam2.set_controls({
+                        "AfMode": 1,  # Auto focus mode
+                        "AfTrigger": 0,  # Trigger AF
+                        "AfSpeed": 2,  # Fast AF
+                        "AfMetering": 0  # Auto AF metering
+                    })
+                else:
+                    # Fallback for other cameras
+                    self.picam2.set_controls({"AfMode": 1, "AfTrigger": 0})
+                    
+                sleep(0.5)  # Wait for AF to complete
+            except Exception as e:
+                print(f"AF error: {str(e)}")
