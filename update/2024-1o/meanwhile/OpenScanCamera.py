@@ -19,34 +19,85 @@ class OpenCamera:
     def arducam_init(self):
         self.picam2 = Picamera2()
         img_size: dict = {}
+        
+        # Configure camera based on model
         if self.camera == 'arducam_64mp':
             # Full resolution for 64MP Hawkeye (9152x6944)
-            img_size: dict = {"size": (9152, 6944), "format": "RGB888"}
+            img_size = {"size": (9152, 6944), "format": "RGB888"}
             
-        # Configure preview with 1080p resolution for better performance
+            # PDAF-specific controls for Hawkeye
+            preview_controls = {
+                "FrameDurationLimits": (33333, 1000000),
+                "AfMode": 1,  # Enable PDAF when available
+                "AfSpeed": load_int('cam_af_speed') if load_bool('cam_pdaf_enable') else 1,
+                "AfMetering": load_int('cam_af_metering') if load_bool('cam_pdaf_enable') else 0,
+                "AwbEnable": 1,
+                "AeEnable": 1
+            }
+            
+            capture_controls = {
+                "FrameDurationLimits": (100000, 1000000),
+                "AfMode": 1,
+                "AfSpeed": 2,
+                "AnalogueGain": 1.0,
+                "ColourGains": (1.0, 1.0),
+                "NoiseReductionMode": load_int('cam_noise_reduction')
+            }
+        else:
+            # Default configuration for other cameras
+            preview_controls = {
+                "FrameDurationLimits": (33333, 1000000),
+                "AfMode": 1,
+                "AfSpeed": 1
+            }
+            
+            capture_controls = {
+                "FrameDurationLimits": (100000, 1000000),
+                "AfMode": 1,
+                "AfSpeed": 2,
+                "AnalogueGain": 1.0,
+                "ColourGains": (1.0, 1.0)
+            }
+        
+        # Add Pi 5 optimizations for all cameras
+        if self._is_pi5():
+            preview_controls.update({
+                "NoiseReductionMode": 2,
+                "AwbEnable": 1,
+                "AeEnable": 1,
+                "FrameRate": 30.0
+            })
+            
+            capture_controls.update({
+                "NoiseReductionMode": 3,
+                "SensorBlackLevels": [4096, 4096, 4096, 4096],
+                "AwbEnable": 1
+            })
+        
+        # Create configurations
         self.preview_config = self.picam2.create_preview_configuration(
             main={"size": (1920, 1080), "format": "RGB888"},
-            controls={
-                "FrameDurationLimits": (33333, 1000000),  # 30fps max for preview
-                "AfMode": 1,  # Enable continuous autofocus for preview
-                "AfSpeed": 1  # Normal AF speed
-            }
+            controls=preview_controls
         )
         
-        # Configure capture for maximum resolution
         self.capture_config = self.picam2.create_still_configuration(
-            main=img_size,
-            controls={
-                "FrameDurationLimits": (100000, 1000000),  # Longer exposure for full res
-                "AfMode": 1,  # Enable autofocus for capture
-                "AfSpeed": 2,  # Fast AF for capture
-                "AnalogueGain": 1.0,
-                "ColourGains": (1.0, 1.0)  # Neutral white balance
-            }
+            main=img_size if img_size else {"format": "RGB888"},
+            controls=capture_controls
         )
         
         self.picam2.configure(self.preview_config)
         self.picam2.start()
+
+    def _is_pi5(self):
+        """Check if running on a Raspberry Pi 5"""
+        try:
+            with open('/proc/cpuinfo', 'r') as f:
+                for line in f:
+                    if line.startswith('Model'):
+                        return 'Raspberry Pi 5' in line
+            return False
+        except:
+            return False
 
     def camera_highlight_sharpest_areas(self, image, threshold=load_int('cam_sharpness'), dilation_size=5):
         # Convert PIL image to grayscale
@@ -281,21 +332,23 @@ class OpenCamera:
             return self.cam_mode
 
     def focus_af(self):
+        """Enhanced autofocus with Hawkeye PDAF support"""
         if self.camera in self.arducams:
-            '''Trigger auto focus with PDAF support'''
             try:
-                # Enable PDAF-based autofocus for 64MP Hawkeye
-                if self.camera == 'arducam_64mp':
+                if self.camera == 'arducam_64mp' and load_bool('cam_pdaf_enable'):
+                    # Use PDAF-based autofocus for Hawkeye
                     self.picam2.set_controls({
-                        "AfMode": 1,  # Auto focus mode
-                        "AfTrigger": 0,  # Trigger AF
-                        "AfSpeed": 2,  # Fast AF
-                        "AfMetering": 0  # Auto AF metering
+                        "AfMode": 1,
+                        "AfTrigger": 0,
+                        "AfSpeed": load_int('cam_af_speed'),
+                        "AfMetering": load_int('cam_af_metering')
                     })
                 else:
-                    # Fallback for other cameras
-                    self.picam2.set_controls({"AfMode": 1, "AfTrigger": 0})
-                    
+                    # Standard AF for other cameras
+                    self.picam2.set_controls({
+                        "AfMode": 1,
+                        "AfTrigger": 0
+                    })
                 sleep(0.5)  # Wait for AF to complete
             except Exception as e:
                 print(f"AF error: {str(e)}")

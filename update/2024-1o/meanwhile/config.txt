@@ -17,6 +17,22 @@ max_framebuffers=1
 # Disable compensation for displays with overscan
 disable_overscan=1
 
+# Pi 5 specific settings
+[pi5]
+# Enable maximum performance
+arm_boost=1
+# Optimize PCIe BAR space allocation
+pcie=pcie_rc_bar_size=8g
+# Enable maximum memory bandwidth
+gpu_mem=512
+# Enable active cooling control
+dtparam=fan_control=1
+# Set temperature thresholds for fan
+dtparam=fan_temp0=60000
+dtparam=fan_temp1=70000
+dtparam=fan_temp2=80000
+max_framebuffers=2
+
 [cm4]
 # Enable host mode on the 2711 built-in XHCI USB controller.
 # This line should be removed if the legacy DWC2 controller is required

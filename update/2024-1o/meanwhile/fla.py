@@ -19,6 +19,8 @@ import zipfile
 import logging
 from logging.handlers import RotatingFileHandler
 from functools import wraps
+import platform
+import re
 
 
 GPIO.setwarnings(False)
@@ -689,6 +691,58 @@ def create_app():
 
             return {'message': f'Motor {motor} run to {angle} degrees'}, 200
 
+    @system_ns.route('/hardware_info')
+    class HardwareInfo(Resource):
+        def get(self):
+            """Get hardware information including Pi 5 specific details"""
+            try:
+                # Get CPU info
+                with open('/proc/cpuinfo', 'r') as f:
+                    cpuinfo = f.read()
+                
+                # Get memory info
+                with open('/proc/meminfo', 'r') as f:
+                    meminfo = f.read()
+                
+                # Parse CPU model
+                model = re.search(r'Model\s+:\s+(.*)', cpuinfo)
+                model = model.group(1) if model else "Unknown"
+                
+                # Parse memory
+                total_mem = re.search(r'MemTotal\s+:\s+(\d+)', meminfo)
+                total_mem = int(total_mem.group(1)) if total_mem else 0
+                
+                # Check if running on Pi 5
+                is_pi5 = 'Raspberry Pi 5' in model
+                
+                # Get temperature
+                try:
+                    with open('/sys/class/thermal/thermal_zone0/temp', 'r') as f:
+                        temp = float(f.read().strip()) / 1000
+                except:
+                    temp = None
+                
+                # Get clock speeds if on Pi 5
+                cpu_freq = None
+                if is_pi5:
+                    try:
+                        with open('/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq', 'r') as f:
+                            cpu_freq = int(f.read().strip()) / 1000
+                    except:
+                        pass
+                
+                return {
+                    'model': model,
+                    'is_pi5': is_pi5,
+                    'memory_mb': total_mem // 1024,
+                    'temperature_c': temp,
+                    'cpu_freq_mhz': cpu_freq,
+                    'platform': platform.platform(),
+                    'python_version': platform.python_version()
+                }, 200
+                
+            except Exception as e:
+                return {'error': f'Failed to get hardware info: {str(e)}'}, 500
 
     @app.route('/favicon.ico')
     def favicon():

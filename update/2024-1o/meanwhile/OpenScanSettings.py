@@ -104,6 +104,15 @@ class OpenScanSettings:
     updateable: bool
     update_auto: bool
     uploadprogress: str
+    pi5_cpu_governor: str = "performance"  # CPU governor for Pi 5
+    pi5_gpu_freq: int = 800  # GPU frequency for Pi 5 (MHz)
+    pi5_over_voltage: int = 0  # Over voltage setting
+    pi5_fan_temp: int = 60  # Fan activation temperature
+    cam_pdaf_enable: bool = True  # Enable PDAF when available
+    cam_af_mode: str = "continuous"  # continuous or single
+    cam_af_speed: int = 2  # 1=normal, 2=fast
+    cam_af_metering: int = 0  # 0=auto, 1=windows
+    cam_noise_reduction: int = 3  # 1=off, 2=normal, 3=high
     
     @classmethod
     def get_openscan_settings(cls):
